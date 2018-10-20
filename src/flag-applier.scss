@@ -1,0 +1,22 @@
+@import "flags.scss";
+
+@include cond-style(not $allow-user-flair) {
+	.side {
+		.flairtoggle,
+		.flairtoggle + .tagline {
+			display: none;
+		}
+	}
+}
+
+@include cond-style($block-thumbnails) {
+	.thumbnail {
+		display: none;
+	}
+}
+
+@include cond-style($block-domains) {
+	.domain a {
+		display: none;
+	}
+}

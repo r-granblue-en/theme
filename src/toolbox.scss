@@ -1,0 +1,45 @@
+@import "utils.scss";
+
+$tb-back: $pop-back-mod;
+$tb-back-mod: #c5dae0;
+$tb-back-darker: #d9e6ea;
+$dark-col: #2c4c52;
+
+.tb-bracket-button {
+	display: inline-block;
+	border: none !important;
+	background: $tb-back !important;
+	width: 12px;
+	height: 14px;
+	font-size: 10px !important;
+	padding-top: 1px !important;
+	line-height: 15px;
+	vertical-align: bottom;
+	box-sizing: content-box;
+	text-align: center !important;
+	border-radius: 2px;
+	color: $dark-col !important;
+}
+
+.add-domain-tag {
+	margin-top: 1px;
+	float: right;
+}
+
+.approval-checkmark ~ .add-domain-tag {
+	margin-right: 5px;
+}
+
+#tb-loading-non-persistent {
+	background: linear-gradient(135deg, $tb-back 0%, $tb-back 25%, $tb-back-mod 25%, $tb-back-mod 50%, $tb-back 50%, $tb-back 75%, black 75%);
+	background-size: 40px 40px;
+	padding-left: 40px;
+	left: -40px;
+	animation: tb-loading 1.2s linear infinite;
+}
+
+@keyframes tb-loading {
+	to {
+		transform: translateX(40px);
+	}
+}

@@ -1,0 +1,390 @@
+@import "./utils.scss";
+
+// header area
+#srList {
+	background: white;
+	top: $sr-header-height;
+	border: none;
+	border-bottom-right-radius: $master-border-radius;
+	box-shadow: $modal-shadow-with-sr-header-flush;
+	border-top: 2px solid $pop-back-mod;
+
+	td[colspan="3"] {
+		position: relative;
+		height: 25px;
+		padding: 0;
+	}
+
+	input {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		border: none;
+		text-indent: 8px;
+	}
+
+	tr {
+		border-color: $pop-back-mod;
+
+		&:hover {
+			background: $pop-back;
+		}
+	}
+
+	.sortAsc:after,
+	.sortDesc:after {
+		font-size: 9px;
+		vertical-align: -1px;
+	}
+}
+
+#RESShortcutsViewport {
+	font-weight: bold;
+	opacity: 0.8;
+}
+
+#RESShortcutsEditContainer {
+	padding-bottom: 5px;
+	background: white;
+}
+
+#RESShortcutsEditContainer,
+#RESShortcutsEditContainer * {
+	background: transparent;
+	overflow: visible;
+	color: $pop-col;
+}
+
+#RESShortcutsSort,
+#RESShortcutsRight,
+#RESShortcutsLeft,
+#RESShortcutsAdd {
+	margin-top: 4px;
+}
+
+#RESShortcutsSort {
+	right: 53px;
+}
+
+#RESShortcutsLeft {
+	right: 33px;
+}
+
+#RESShortcutsAdd {
+	margin-top: 3px;
+	margin-right: 3px;
+}
+
+#sort-menu {
+	border: none;
+	margin-top: 0;
+	margin-left: 4px;
+	font-size: 12px;
+	border-radius: 0 0 $master-border-radius $master-border-radius;
+	box-shadow: $modal-drop-shadow;
+	z-index: 10000;
+
+	&:before {
+		content: "↑↓";
+		display: block;
+		position: absolute;
+		right: 0;
+		top: -22px;
+		width: 22px;
+		height: 22px;
+		background: $pop-back-mod;
+		font-size: 12px;
+		text-align: center;
+		line-height: 23px;
+		pointer-events: none;
+	}
+
+	p {
+		background: $pop-back-mod;
+		color: $pop-col;
+		font-size: 0;
+		padding: 4px 9px;
+	}
+
+	p:before {
+		content: "sort by";
+		font-size: 12px;
+	}
+}
+
+#RESAccountSwitcherIcon {
+	position: absolute;
+	width: 30px !important;
+	height: 30px !important;
+	right: -40px;
+	top: 0;
+	background: rgba(255,255,255,0.7);
+	background-image: none !important;
+}
+
+.res .user {
+	margin-right: 40px;
+}
+
+#RESSettingsButton:after {
+	display: none;
+}
+
+#openRESPrefs {
+	margin-top: 59px;
+}
+
+#RESSettingsButton:before {
+	content: $res-prefs;
+	font-size: 11px;
+	font-family: inherit;
+	font-weight: bold;
+	color: $header-menu-col;
+}
+
+#res-trash-overlay {
+	background: $modal-shadow-back;
+	z-index: 99999;
+}
+
+#res-shortcut-trash {
+	border: none;
+	border-radius: $master-border-radius;
+	box-shadow: $modal-drop-shadow;
+	padding: 15px 20px;
+	color: $pop-col;
+	z-index: 100000;
+}
+
+#res-shortcut-trash-zone {
+	border: none;
+	color: $pop-col-lighter;
+	background: $pop-back-mod;
+	border-radius: 2px;
+	padding: 15px;
+
+	&.srOver {
+		background: #fbdcdc;
+		box-shadow: inset 0 0 0 2px #efb1b1;
+		color: #d64141;
+	}
+}
+
+#RESSubredditGroupDropdown {
+	display: block;
+	background: white;
+	border: none;
+	border-radius: 0 0 $master-border-radius $master-border-radius;
+	box-shadow: $modal-drop-shadow;
+	overflow: hidden;
+
+	ul {
+		padding: 3px 0;
+		border: none;
+	}
+
+	ul a {
+		padding: 3px 10px;
+		color: $header-menu-col;
+	}
+
+	ul a:hover {
+		background: $pop-back-mod;
+	}
+
+	.RESShortcutsEditButtons {
+		background: $pop-back;
+		padding: 2px 5px;
+	}
+
+	> .RESShortcutsEditButtons .res-icon {
+		color: $pop-col;
+	}
+}
+
+#editShortcutDialog,
+#RESShortcutsAddFormContainer,
+.RESDropdownList {
+	background: white;
+	color: $pop-col;
+	border-radius: $master-border-radius;
+	padding: 8px;
+	border: none;
+	z-index: 10000;
+
+	button,
+	input[type="submit"] {
+		height: 25px;
+		margin-top: 10px;
+		@include standard-btn;
+	}
+
+	label {
+		text-transform: lowercase;
+		color: $pop-col-lighter;
+	}
+
+	input[type="text"] {
+		background: $pop-back;
+		border: none;
+		padding: 0 6px;
+		height: 25px;
+	}
+
+	h3, strong {
+		font-weight: bold;
+		font-size: 13px;
+	}
+}
+
+#editShortcutDialog,
+#RESShortcutsAddFormContainer {
+	&:before {
+		content: "";
+		display: block;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 22px;
+		left: 0;
+		background: $modal-shadow-back;
+		opacity: 0.7;
+		z-index: -2;
+		pointer-events: none;
+	}
+
+	&:after {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: white;
+		border-radius: inherit;
+		box-shadow: inset 0 -41px 0 $pop-back, $modal-drop-shadow;
+		z-index: -1;
+	}
+}
+
+#editShortcutDialog #sortButton {	// egads
+	border: none !important;
+	padding: 0 !important;
+	background: $pop-back-mod !important;
+	line-height: 25px;
+	font-size: 90% !important;
+	border-radius: 0 $master-border-radius $master-border-radius 0;
+}
+
+#editShortcutDialog .RESDescription {
+	margin-top: 5px;
+}
+
+#shortcut-delete {
+	background: $alert-col-mild !important;
+	color: white !important;
+}
+
+#RESShortcutsAddFormContainer {
+	margin-top: 4px;
+	margin-right: 2px;
+}
+
+#shortCutsAddForm div:first-child {
+	margin: 0;
+}
+
+#shortCutsAddForm div:nth-child(2) {
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+#shortCutsAddForm .res-shortcuts-add-footer {
+	position: absolute;
+	margin: 9px 5px;
+	padding: 0;
+	line-height: 26px;
+
+	.res-icon {
+		vertical-align: -2px;
+		margin-right: 3px;
+	}
+}
+
+.RESCloseButton {
+	background: $pop-back;
+	border: none;
+	font-weight: bold;
+	line-height: 24px;
+	z-index: 0;
+
+	&:hover {
+		background: $pop-back-mod;
+	}
+}
+
+.RESDropdownList,
+.RESDropdownList li:last-child  {
+	background: $pop-back;
+	border: none;
+}
+
+.RESDropdownList li {
+	border-color: rgba(150,150,150,0.1);
+	color: $header-menu-col;
+}
+
+.RESDropdownList li:hover,
+.RESDropdownList a:hover {
+	background: $pop-back-mod;
+}
+
+// Main content
+body.listing-page #siteTable .thing.res-selected {
+	.parent:before {
+		box-shadow: 0 0 0 800px $pop-back;
+	}
+
+	.entry {
+		background: $pop-back !important;
+	}
+}
+
+#sr-header-area a.RESShortcutsCurrentSub,
+#RESSubredditGroupDropdown .RESShortcutsCurrentSub a {
+	font-weight: bold;
+	color: $highlight-col !important;
+}
+
+#RESNotifications {
+	top: 5px !important;
+	right: 5px;
+	border-radius: $master-border-radius;
+	overflow: hidden;
+	box-shadow: $modal-drop-shadow;
+}
+
+.RESNotification {
+	border: none;
+
+	.RESNotificationHeader .gearIcon,
+	.RESNotificationClose,
+	.RESNotificationFooter {
+		opacity: 1;
+	}
+}
+
+.RESNotificationHeader {
+	--background: $pop-back;
+}
+
+.RESNotificationContent {
+	border: none;
+}
+
+.RESNotificationFooter {
+	background: $pop-back;
+	border: none;
+}

@@ -1,0 +1,25 @@
+{
+  "name": "tifu_css",
+  "version": "1.0.0",
+  "description": "TIFU CSS and dev server for remote file accessibility",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PicturElements/tifu_css.git"
+  },
+  "keywords": [
+    "TIFU"
+  ],
+  "author": "PicturElements",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PicturElements/tifu_css/issues"
+  },
+  "homepage": "https://github.com/PicturElements/tifu_css#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

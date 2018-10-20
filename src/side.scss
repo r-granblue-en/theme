@@ -1,0 +1,923 @@
+@import "./utils.scss";
+
+.side {
+	position: relative;
+	background: white;
+	margin: 0 20px;
+	border-radius: $master-border-radius;
+	z-index: 1001;
+	width: $sidebar-width;
+
+	> .spacer:first-child {
+		height: 40px;
+	}
+
+	.spacer {
+		margin: 0;
+	}
+
+	// Important: everything starting with the subreddit name
+	// and below should have this as the offset parent.
+	.titlebox {
+		position: relative;
+		margin-top: 15px;
+	}
+
+	.res & .titlebox {
+		margin-top: 0;
+	}
+
+	.titlebox > * {
+		padding-left: $sidebar-padding;
+		padding-right: $sidebar-padding;
+	}
+
+	.redditname {
+		margin-top: 0;
+		font-size: 0;
+		height: 35px;
+		line-height: 40px;
+		padding-bottom: 0;
+		margin-bottom: 15px;
+		float: left;
+	}
+
+	.res & .redditname {
+		margin-top: 20px;
+		padding-bottom: 35px;
+		margin-bottom: -35px;
+		float: none;
+	}
+
+	.redditname a:after {
+		content: $sub-name;
+		color: #666;
+		font-size: 20px;
+		letter-spacing: 0.02em;
+		margin-left: 2px;
+	}
+
+	.redditname a:hover {
+		text-decoration: none;
+	}
+
+	body.loggedin & .redditname:after {
+		content: $settings-text;
+		display: block;
+		position: absolute;
+		width: $sidebar-inner-width;
+		height: 25px;
+		background: $pop-back;
+		top: 85px;
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 30px;
+		padding: 0 8px;
+		box-sizing: border-box;
+		text-transform: uppercase;
+		color: $pop-col;
+	}
+
+	body:not(.res) & .side .subscribe-button a {
+		padding: 0 12px !important;
+		text-align: center;
+	}
+
+	body:not(.res) & .subscribe-button {
+		margin: 7px 0 0 3px;
+	}
+
+	.subButtons {
+		display: flex;
+		position: absolute;
+		top: 40px;
+		width: 100%;
+		height: 35px;
+		line-height: 35px;
+		box-sizing: border-box;
+		text-align: center;
+	}
+
+	.subscribe-button,
+	.res-fancy-toggle-button {
+		position: relative;
+		flex-grow: 1;
+		flex-basis: 0;
+		height: 25px !important;
+		line-height: 25px;
+		padding: 0;
+		margin: 0;
+		border: none;
+		background: $pop-back;
+		color: $main-back-overlay-col;
+		font-size: 11px;
+		border-radius: 2px;
+		box-shadow: inset 0 -2px rgba(0, 0, 0, 0.05);
+	}
+
+	.subscribe-button.toggle .option.active {
+		display: block;
+	}
+
+	.subscribe-button:hover,
+	.res-fancy-toggle-button:hover {
+		background: $pop-back-mod;
+	}
+
+	.subscribe-button .option.add {
+		@include standard-btn;
+	}
+
+	.subscribe-button a {
+		position: relative;
+		background-image: none !important;
+		background-color: transparent;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		line-height: inherit;
+		padding: 0 12px !important;
+		color: inherit !important;
+		border: none !important;
+		box-sizing: border-box;
+		text-decoration: none;
+		font-size: inherit;
+	}
+	
+	* + .res-fancy-toggle-button {
+		margin-left: 5px;
+	}
+
+	.subscribers,
+	.users-online {
+		position: absolute;
+		top: 8px;
+		right: 2px;
+		font-size: 10px;
+		color: $pop-col-lighter;
+	}
+
+	.subscribers .word,
+	.users-online .word {
+		display: none;
+	}
+
+	.subscribers .number:after {
+		content: " " $subscriber-text;
+	}
+
+	.users-online {
+		top: 20px;
+	}
+
+	.users-online .number:after {
+		content: " " $online-text;
+	}
+
+	.users-online:before {
+		display: none;
+	}
+
+	.res-sr-style-toggle {
+		margin-top: 75px !important;
+	}
+
+	// faux config form items
+	.titlebox form.toggle,
+	.leavemoderator {
+		padding: 0;
+		margin: 0 $sidebar-padding;
+	}
+
+	.res-sr-style-toggle,
+	.leavemoderator,
+	.sr_style_toggle,
+	.flairtoggle label,
+	.flairtoggle + .tagline {
+		position: relative;
+		height: 25px;
+		line-height: 16px;
+		background: $pop-back !important;
+		color: $pop-col !important;
+		font-size: 0;
+		margin: 0;
+		transition: background 150ms;
+		clear: both;
+	}
+
+	.titlebox label,
+	.leavemoderator,
+	.flairtoggle + .tagline .author {
+		display: block;
+		width: $sidebar-width - 2 * $sidebar-padding;
+		z-index: 100;
+		box-sizing: border-box;
+		height: 25px;
+		line-height: 26px;
+		padding: 0 8px;
+		margin: 0;
+	}
+
+
+	.leavemoderator {
+		width: $sidebar-inner-width;
+	}
+
+	.leavemoderator,
+	.flairtoggle + .tagline {
+		margin: 0 $sidebar-padding;
+	}
+
+	.titlebox label {
+		position: absolute;
+	}
+
+	.flairtoggle + .tagline .author {
+		z-index: 90;
+		pointer-events: none;
+	}
+
+	.flairtoggle input:checked + label {
+		position: relative;
+	}
+
+	.res-sr-style-toggle:hover,
+	.leavemoderator:hover,
+	.sr_style_toggle:hover,
+	.flairtoggle:hover label,
+	.flairtoggle + .tagline:hover,
+	.flairtoggle:hover + .tagline {
+		background: $pop-back-mod !important;
+	}
+
+	#res-style-checkbox,
+	#sr_style_enabled,
+	#flair_enabled,
+	.leavemoderator:before,
+	.moderator.toggle .main:before {
+		display: none;
+	}
+
+	.titlebox label {
+		cursor: pointer;
+		font-size: 0;
+	}
+
+	.titlebox label:before,
+	.leavemoderator:after,
+	.flairtoggle + .tagline .author {
+		font-size: 10.5px;
+	}
+
+	#res-style-checkbox + label:before {
+		content: $res-use-style;
+		vertical-align: bottom;
+	}
+
+	.leavemoderator:after {
+		content: $you-are-mod;
+	}
+
+	#sr_style_enabled + label:before {
+		content: $use-theme;
+	}
+
+	#flair_enabled + label:before {
+		content: $show-flair;
+	}
+
+	.titlebox label:after,
+	.leavemoderator a:before,
+	.flairselectbtn:before,
+	.md > blockquote:first-child > h1 + p a:after {
+		content: "";
+		display: block;
+		position: absolute;
+		top: 5px;
+		right: 8px;
+		width: 15px;
+		height: 15px;
+		line-height: 16px;
+		border-radius: $master-border-radius;
+		box-shadow: inset 0 0 0 2px $pop-back-darker;
+		cursor: pointer;
+	}
+
+	.leavemoderator a,
+	.flairselectbtn,
+	.md > blockquote:first-child > h1 + p a {
+		width: 100%;
+		height: 25px;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	.titlebox input:checked + label:after,
+	.md > blockquote:first-child > h1 + p a:nth-child(2):after {
+		content: "\2715";
+		font-size: 13px;
+		background: $pop-back-darker;
+		color: white;
+		text-align: center;
+	}
+
+	.leavemoderator a,
+	.flairselectbtn {
+		width: 100%;
+		box-shadow: none;
+	}
+
+	.flairtoggle + .tagline .author {
+		padding-left: 8px;
+		border-left: 1px solid $pop-back-darker;
+		box-shadow: -10px 0 $pop-back;
+	}
+
+	.usertext {
+		padding: 0;
+		margin: 0;
+	}
+
+	.md {
+		font-size: 12px;
+		counter-reset: h3c;
+	}
+
+	.md > blockquote:first-child {
+		position: relative;
+		background: $pop-back;
+		margin: 0 $sidebar-padding;
+		border: none;
+		overflow: hidden;
+		padding: 0;
+		padding-bottom: 8px;
+		padding-top: 15px;
+
+		> * {
+			padding-left: 8px;
+			padding-right: 8px;
+		}
+
+		> h1 {
+			position: relative;
+			font-size: 10px;
+			height: 0;
+			margin: 0;
+			padding: 0 8px;
+			line-height: 26px;
+			font-weight: normal;
+			color: $pop-col-lighter;
+			pointer-events: none;
+			z-index: 100;
+		}
+
+		> h1 + p {
+			position: relative;
+			height: 15px;
+			padding: 5px 8px;
+			margin: 0;
+			transition: background 150ms;
+			font-size: 0;
+		}
+
+		> h1 + p:hover {
+			background: $pop-back-mod;
+		}
+
+		> h1 + p a {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+		}
+
+		> h2 {
+			margin-top: 15px;
+			margin-bottom: 6px;
+			font-size: 12px;
+			font-weight: 600;
+			color: #4e5556;
+		}
+
+		blockquote {
+			display: flex;
+			justify-content: center;
+			margin: 0;
+			border: none;
+		}
+
+		blockquote h1 {
+			position: relative;
+			flex-grow: 1;
+			max-width: 60px;
+			height: 24px;
+			line-height: 25px;
+			text-align: center;
+			position: relative;
+			margin: 0;
+			font-size: 12px;
+			text-transform: uppercase;
+			background: $pop-back-slightly-darker;
+			color: $pop-col;
+			border-radius: 2px;
+		}
+
+		blockquote h1 + h1 {
+			margin-left: 8px;
+		}
+
+		blockquote h1 a {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			color: inherit;
+		}
+	}
+
+	h2 a {
+		color: inherit !important;
+		font-size: 13px;
+	}
+
+	.md > p:first-of-type {
+		margin: 30px 30px 10px 30px;
+		text-align: center;
+		font-size: 12px;
+	}
+
+	h3 {
+		position: relative;
+		color: $pop-col;
+		font-size: 110% !important;
+		counter-increment: h3c;
+		margin-bottom: 0 !important;
+		font-weight: normal;
+		padding: 7px 10px 7px 42px;
+		letter-spacing: 0.005em;
+	}
+
+	h3:before {
+		content: counter(h3c);
+		display: block;
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		line-height: 17px;
+		left: 14px;
+		top: 7px;
+		text-align: center;
+		border-radius: 50%;
+		background: #6f8588;
+		color: white;
+		font-size: 65%;
+		font-weight: bold;
+	}
+
+	h6 + blockquote:hover h3:before {
+		background: $highlight-col;
+	}
+
+	h3:after {
+		content: "";
+		display: none;
+		position: absolute;
+		width: 25px;
+		height: 2px;
+		background: $highlight-col;
+		top: 14px;
+		left: -10px;
+		z-index: 1000;
+	}
+
+	h6 + blockquote:hover h3 {
+		font-weight: bold;
+	}
+
+	h6 + blockquote:hover h3:after {
+		display: block;
+	}
+
+	h6 {
+		padding: 0 !important;
+	}
+
+	h6 + blockquote {
+		border: none;
+		position: relative;
+		padding: 0 !important;
+		cursor: help;
+	}
+
+	h6 + blockquote p,
+	h6 + blockquote ul {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 0;
+		margin-right: 10px;
+		overflow: hidden;
+		background: white;
+		cursor: default;
+		border-right: 2px solid $highlight-col; // #6f8588;
+		border-radius: 2px;
+		box-sizing: border-box;
+		z-index: 2;
+	}
+
+	h6 + blockquote ul {
+		padding: 0;
+	}
+
+	h6 + blockquote li {
+		list-style: none;
+		position: relative;
+		counter-increment: subclauses;
+		margin: 3px 0;
+	}
+
+	h6 + blockquote li:before {
+		content: counter(subclauses,upper-alpha) ".";
+		position: absolute;
+		left: -15px;
+		font-weight: bold;
+	}
+
+	h6 + blockquote ul {
+		padding-left: 27px !important;
+		counter-reset: subclauses;
+	}
+
+	h6 + blockquote:hover {
+		background: white !important;
+		z-index: 100;
+		box-shadow: 0 0 0 3000px rgba(0,0,0,0.1);
+		border-radius: 2px;
+	}
+
+	h6 + blockquote:hover > p,
+	h6 + blockquote:hover > ul {
+		left: auto;
+		right: 100%;
+		padding: 10px;
+		padding-top: 35px;
+		width: 300px;
+		height: auto;
+		margin-top: 0;
+		overflow: visible;
+
+		&:before {
+			content: "Rule #" counter(h3c);
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 25px;
+			line-height: 25px;
+			padding: 0 10px;
+			box-sizing: border-box;
+			border-radius: 2px 2px 0 0;
+			color: $pop-col;
+			font-weight: bold;
+			background: $pop-back;
+		}
+
+		&:after {
+			content: "";
+			display: block;
+			position: absolute;
+			width: 15px;
+			height: 100%;
+			top: 0;
+			right: -12px;
+		}
+	}
+
+	h6 + blockquote:hover > ul:before {
+		content: "Rule #" counter(h3c) " subclauses";
+	}
+
+	.md > p:first-of-type ~ h2 {
+		width: 100%;
+		height: 40px;
+		position: relative;
+		text-align: center;
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: 14px;
+		overflow: hidden;
+		margin: 0 !important;
+		box-sizing: content-box;
+		line-height: 60px !important;
+		padding: 20px 0 0 0 !important;
+		color: #6a7071;
+		z-index: 1;
+
+		&:before{
+			content: "";
+			display: block;
+			position: absolute;
+			bottom: -20px;
+			width: 100%;
+			height: 60px;
+			border-radius: 50% 50% 0 0;
+			z-index: -1;
+		}
+
+		& ~ * {
+			margin: 0;
+			padding: 5px;
+		}
+	}
+
+	// Race of specificity!
+	// Quick and dirty way of allowing styles to overwrite each other
+	// although they're both selecting the same elements.
+	// Not the best for performance, but it's pretty clean
+	.md > h2:nth-of-type(1),
+	.md > h2:nth-of-type(1) ~ h2:nth-of-type(3) {
+		&:before,
+		& ~ * {
+			background: $pop-back;
+		}
+	}
+
+	.md > h2:nth-of-type(2),
+	.md > h2:nth-of-type(2) ~ h2:nth-of-type(4) {
+		&:before,
+		& ~ * {
+			background: white;
+		}
+	}
+
+	a[href*="w/rules"] {
+		display: block;
+		margin: 12px 40px !important;
+		text-align: center;
+	}
+
+	h2 + table th {
+		display: none;
+	}
+
+	h2 + table td {
+		border: none !important;
+	}
+
+	h4 {
+		font-size: 12px !important;
+		padding: 6px 15px !important;
+	}
+
+	h2 + h4 {
+		padding-top: 15px !important;
+	}
+
+	.bottom {
+		position: relative;
+		font-size: 0 !important;
+		border: none !important;
+		width: 100%;
+		height: 60px;
+		border-radius: 50%;
+		background: #f5fafb;
+		padding: 0 !important;
+		margin-top: -30px;
+		z-index: -10;
+		margin-bottom: 15px;
+	}
+
+	.sidebox.create .spacer {
+		display: none;
+	}
+
+	.sidecontentbox {
+		position: relative;
+		background: $pop-back;
+		margin: 10px;
+	}
+
+	.sidecontentbox .content {
+		border: none;
+		padding: 8px;
+	}
+
+	.sidecontentbox .title {
+		padding: 0 8px;
+		height: 25px;
+		line-height: 30px;
+	}
+
+	.sidecontentbox .title h1 {
+		color: $pop-col;
+		font-size: 12px;
+		font-weight: bold;
+	}
+
+	.sidecontentbox a.helplink {
+		margin: 8px;
+	}
+
+	#moderation_tools {
+		margin-top: 30px;
+	}
+
+	body.loggedin & .spacer:last-child {
+		padding-bottom: 10px;
+		position: relative;
+	}
+}
+
+#search {
+	position: absolute;
+	width: 100%;
+	height: 1000px;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	border-radius: $master-border-radius;
+	padding: $sidebar-padding;
+	box-sizing: border-box;
+	pointer-events: none;
+}
+
+#search > * {
+	pointer-events: auto;
+}
+
+#search input[type=text] {
+	background: $pop-back;
+	position: absolute;
+	height: 30px;
+	padding: 0 $sidebar-padding;
+	border: none;
+	border-radius: 3px;
+	outline: none;
+	z-index: 1000;
+	width: $sidebar-inner-width;
+}
+
+#search input[type=submit] {
+	position: absolute;
+	top: 18px;
+	right: 20px;
+	box-shadow: none;
+	padding: 0;
+	z-index: 1000;
+}
+
+#searchexpando {
+	position: absolute;
+	width: $sidebar-inner-width;
+	box-sizing: border-box;
+	z-index: 100;
+	top: 40px;
+	border: none;
+	background: white;
+	box-shadow: 0 0 1000px 600px transparent;
+	transition: box-shadow 300ms;
+	z-index: 900;
+}
+
+#search input:focus ~ #searchexpando,
+#searchexpando[style*="block"]:not([style*="hidden"]) {
+	transition-delay: 20ms;
+	box-shadow: 0 0 1000px 600px $modal-shadow-back;
+}
+
+#searchexpando {
+	label {
+		overflow: hidden;
+		line-height: 18px;
+		margin-bottom: 2px;
+
+		input,
+		select {
+			float: right;
+			margin-right: 0 !important;
+		}
+	}
+
+	br ~ label {
+		overflow: hidden;
+		margin-bottom: 5px;
+		line-height: 22px;
+	}
+
+	p {
+		margin: 10px 0 5px 0;
+		text-align: center;
+	}
+}
+
+.morelink {
+	border: none;
+	margin: $sidebar-padding;
+	text-transform: uppercase;
+	height: 35px;
+
+	a {
+		position: relative;
+		background: $main-back;
+		border: none;
+		height: 35px;
+		line-height: 37px;
+		letter-spacing: 0.01em;
+		font-size: 90%;
+		text-indent: -20px;
+		border-radius: $master-border-radius;
+		box-shadow: inset 0 -2px rgba(0,0,0,0.1);
+
+		&,
+		&:hover {
+			color: $main-back-overlay-col;
+		}
+
+		&:after {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 12px;
+			right: 12px;
+			width: 0 !important;
+			height: 0 !important;
+			margin: 0 !important;
+			border: 6px solid transparent;
+			border-right-width: 0;
+			border-left-color: currentColor;
+			border-left-width: 10px;
+			background: none !important;
+		}
+
+		&:hover:after {
+			opacity: 1 !important;
+		}
+	}
+
+	.nub {
+		display: none;
+	}
+}
+
+.side .submit-link {
+	display: none;
+}
+
+.flairselector {
+	position: fixed !important;
+	z-index: 10000000;
+	top: 50% !important;
+	left: 50% !important;
+	transform: translate(-50%,-50%);
+	box-shadow: $modal-drop-shadow, $modal-shadow;
+	border-radius: $master-border-radius;
+	border: none !important;
+	padding: 0 !important;
+	overflow: hidden;
+
+	h2 {
+		background: $pop-back;
+		color: $pop-col;
+		text-transform: uppercase;
+		font-size: 12px;
+		padding: 8px 5px;
+	}
+
+	.error {
+		margin: 20px 10px;
+		color: #ce4141;
+	}
+
+	&.active {
+		+ *:before {
+			content: "";
+			display: block;
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			z-index: 9999;
+		}
+
+		&[style*="18px"] {
+			border: 10px solid white !important;
+			border-left-width: 15px !important;
+			border-right-width: 15px !important;
+			background: white;
+		}
+
+		img {
+			opacity: 0;
+		}
+	}
+}
+
+.sidecontentbox .collapse-button {
+	display: none;
+}

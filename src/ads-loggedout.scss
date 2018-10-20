@@ -1,0 +1,144 @@
+@import "utils.scss";
+
+$inner-width: $sidebar-width - $sidebar-padding * 2;
+
+.infobar.listingsignupbar {
+	margin: 0 10px 10px !important;
+	overflow: visible;
+}
+
+.infobar.listingsignupbar:before {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: -10px;
+	left: -10px;
+	border: 10px solid $card-back;
+	border-top-right-radius: 3px;
+}
+
+.ad-container {
+	width: $inner-width;
+	margin: -12px $sidebar-padding;
+}
+
+.ad-container > * {
+	transform-origin: 0 50%;
+	transform: scale($inner-width / 300px);
+}
+
+.login-form-side {
+	position: relative;
+	margin: $sidebar-padding;
+	background: $pop-back;
+	border: none;
+	padding-top: 22px;
+
+	&:before {
+		content: $login;
+		position: absolute;
+		top: 8px;
+		left: 8px;
+		color: $pop-col;
+		text-transform: uppercase;
+		font-size: 12px;
+		font-weight: bold;
+	}
+
+	input[type=text],
+	input[type=password] {
+		margin: 8px 8px 0 8px;
+		width: $inner-width - 16px;
+		border: none;
+		border-radius: 1px;
+	}
+
+	#remember-me {
+		margin: 8px;
+	}
+
+	.submit {
+		margin: 8px !important;
+	}
+}
+
+.lang-modal {
+	.modal-content {
+		width: 380px;
+		padding-top: 20px;
+		margin: auto;
+	}
+
+	.modal-body {
+		padding: 20px;
+	}
+
+	.details {
+		display: block;
+		text-align: right;
+		margin: 5px !important;
+	}
+}
+
+.content .spacer {
+	margin: 0;
+}
+
+#siteTable_organic {
+	margin: 0 !important;
+	background: transparent !important;
+	overflow: visible;
+	border: none;
+}
+
+.link.promotedlink {
+	background: transparent !important;
+	padding: 0 !important;
+	box-sizing: border-box;
+	overflow: visible !important;
+	min-height: 60px;
+}
+
+.sponsored-indicator.rank img {
+	width: 9px;
+	height: 9px;
+	vertical-align: -1px;
+}
+
+body:not(.loggedin) .user {
+	font-size: 12px;
+	padding: 0 11px;
+	border-radius: 2px;
+	background: $card-back;
+	cursor: default;
+
+	> a {
+		display: inline-block;
+	}
+}
+
+.reddit-infobar {
+	border-radius: 3px;
+	border: none;
+	background: $pop-back;
+	box-shadow: $modal-drop-shadow;
+
+	&.with-btn {
+		padding-right: 90px;
+	}
+
+	&:before {
+		background-color: $highlight-col !important;
+	}
+
+	p {
+		margin: 0 5px !important;
+		line-height: 25px !important;
+	}
+
+	.c-btn-primary {
+		height: 30px;
+	}
+}
