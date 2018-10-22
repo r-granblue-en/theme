@@ -8,4 +8,4 @@ How to use:
 3. go to /r/tifu_css (or any other sub with no custom styling)
 4. add this bookmarklet: ```javascript: (function(){let style=document.createElement("link"); style.rel="stylesheet"; style.href="http://localhost:2005/src/output.css"; document.head.appendChild(style)})();```
 5. click that mfing bookmarklet
-6. add project to DevTools workspace, install and run sass `cmd: sass --watch style.scss:output.css` to edit the SCSS live; preferably in DevTools
+6. add project to DevTools workspace, install and run sass, `sass --watch style.scss:output.css`, to edit the SCSS live; preferably in DevTools
