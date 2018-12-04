@@ -3,20 +3,28 @@
 $inner-width: $sidebar-width - $sidebar-padding * 2;
 
 .infobar.listingsignupbar {
-	margin: 0 10px 10px !important;
+	margin: 2px 10px 7px !important;
+	padding: 0 !important;
 	overflow: visible;
 }
 
+.comments-page .infobar.listingsignupbar {
+	margin-top: 10px !important;
+}
+
 .infobar.listingsignupbar:before {
-	content: "";
+	content: "" !important;
 	display: block;
 	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: -10px;
-	left: -10px;
-	border: 10px solid $card-back;
-	border-top-right-radius: 3px;
+	width: 100% !important;
+	height: 100% !important;
+	top: -10px !important;
+	left: -10px !important;
+	margin: 0 !important;
+	border: 10px solid $card-back !important;
+	border-radius: 0 $master-border-radius 0 0 !important;
+	background: transparent !important;
+	box-shadow: none;
 }
 
 .ad-container {
@@ -51,8 +59,9 @@ $inner-width: $sidebar-width - $sidebar-padding * 2;
 	input[type=password] {
 		margin: 8px 8px 0 8px;
 		width: $inner-width - 16px;
-		border: none;
-		border-radius: 1px;
+		border: 1px solid $pop-back-slightly-darker;
+		border-radius: $small-border-radius;
+		background: $card-back;
 	}
 
 	#remember-me {
@@ -91,6 +100,10 @@ $inner-width: $sidebar-width - $sidebar-padding * 2;
 	background: transparent !important;
 	overflow: visible;
 	border: none;
+
+	.link + .clearleft:last-child {
+		margin-bottom: 4px;
+	}
 }
 
 .link.promotedlink {
@@ -98,7 +111,7 @@ $inner-width: $sidebar-width - $sidebar-padding * 2;
 	padding: 0 !important;
 	box-sizing: border-box;
 	overflow: visible !important;
-	min-height: 60px;
+	min-height: 50px;
 }
 
 .sponsored-indicator.rank img {
@@ -110,8 +123,12 @@ $inner-width: $sidebar-width - $sidebar-padding * 2;
 body:not(.loggedin) .user {
 	font-size: 12px;
 	padding: 0 11px;
-	border-radius: 2px;
+	border-radius: $small-border-radius;
 	background: $card-back;
+	color: $pop-col;
+	text-align: center;
+	box-sizing: border-box;
+	min-width: $sidebar-width - 40px;
 	cursor: default;
 
 	> a {
@@ -134,11 +151,55 @@ body:not(.loggedin) .user {
 	}
 
 	p {
-		margin: 0 5px !important;
+		margin: 0 !important;
 		line-height: 25px !important;
 	}
 
 	.c-btn-primary {
 		height: 30px;
 	}
+}
+
+.tfa-login-modal-backdrop {
+	z-index: 9999;
+}
+
+.infobar.commentsignupbar {
+	margin: 10px !important;
+	display: block !important;
+	padding: 8px 12px !important;
+}
+
+.commentsignupbar:before {
+	display: none !important;
+}
+
+.commentsignupbar__container {
+	background: transparent;
+	padding: 4px 0;
+	min-height: 0;
+	max-width: 100%;
+}
+
+.commentsignupbar__textarea-above {
+	margin: auto;
+}
+
+.commentsignupbar__textarea {
+	display: none;
+}
+
+.commentsignupbar__title {
+	display: inline-block !important;
+	margin-right: 20px;
+	height: 30px;
+	line-height: 32px !important;
+}
+
+.commentsignupbar__cta-container {
+	display: inline-block;
+}
+
+.commentsignupbar__desc {
+	display: none !important;
 }

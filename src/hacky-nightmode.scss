@@ -1,0 +1,219 @@
+@import "./filters.scss";
+@import "./hacky-nightmode-settings.scss";
+
+@if ($support-hacky-nightmode) {
+
+body.res-nightmode, :lang(nm) body {
+	background: $body-back-nm;
+}
+
+:lang(nm) body.comments-page .thing.link.res-selected .entry,
+.nightmode.comments-page .thing.link.res-selected .entry {
+	background: $card-back-nm !important;
+}
+
+//.res-nightmode,
+:lang(nm) {
+	.xontent a,
+	.tagline a,
+	.search-result-meta a,
+	.md a {
+		color: #6fb1e8;
+	}
+
+	#sr-header-area {
+		background: $header-back-nm;
+	}
+
+	.link {
+		border-bottom: 1px solid $body-back-nm !important;
+	}
+
+	.link .parent:before,
+	.content > .modtools > span:first-of-type:before {
+		@include sub-node-disc($card-back-nm);
+	}
+
+	&.listing-page .content[role="main"],
+	.content > .modtools {
+		border-color: $card-back-nm !important;
+	}
+
+	&.listing-page .thing.link.res-selected .entry {
+		background: $pop-back-slightly-darker-nm !important;
+	}
+
+	.thing.link.res-selected .parent:before {
+		@include sub-node-disc($pop-back-slightly-darker-nm,true);
+	}
+
+	.side h6 + blockquote:hover > p,
+	.side h6 + blockquote:hover > ul {
+		background: $body-back-nm;
+	}
+
+	.content[role="main"],
+	.sr-bar a,
+	#RESSubredditGroupDropdown ul a,
+	#RESShortcutsEditContainer,
+	#RESShortcutsEditContainer *,
+	.side .sidecontentbox .title h1,
+	.side *,
+	.side *:before,
+	.side *:after,
+	.side .md > blockquote:first-child,
+	.roundfield,
+	.linefield,
+	.md,
+	#editShortcutDialog,
+	#RESShortcutsAddFormContainer,
+	.RESDropdownList,
+	.dropdown.lightdrop .selected,
+	.res-commentNavToggle,
+	.RESMacroDropdownTitle {
+		color: $col-nm;
+	}
+
+	.listing-page .content[role="main"],
+	#RESSubredditGroupDropdown > .RESShortcutsEditButtons .res-icon,
+	.redditname:after,
+	label {
+		color: $col-nm !important;
+	}
+
+	.link .entry,
+	.link .entry .buttons li a {
+		color: $col-darker-nm;
+	}
+
+	#sr-header-area a.RESShortcutsCurrentSub,
+	#RESSubredditGroupDropdown .RESShortcutsCurrentSub a {
+		color: $highlight-col-nm !important;
+	}
+
+	.listing-page .content[role="main"]:after,
+	.side,
+	.link .entry,
+	.rank:before,
+	#RESSubredditGroupDropdown,
+	.side h6 + blockquote:hover,
+	#searchexpando,
+	.modtools .dropdown-title,
+	.stylesheet-customize-container,
+	.create-reddit,
+	.subreddit-rules-page,
+	.messages-page .content,
+	.usertable, .wiki-page-content,
+	.flair-settings,
+	.wiki-page .wiki-page-content,
+	#editShortcutDialog:after,
+	#RESShortcutsAddFormContainer:after,
+	.commentarea {
+		background: $card-back-nm !important;
+	}
+
+	.side .sidecontentbox,
+	#RESSubredditGroupDropdown .RESShortcutsEditButtons,
+	.roundfield,
+	.linefield,
+	.pretty-form input[type=text],
+	.res-filterline-dropdown,
+	#sr-drop-down,
+	.drop-choices:not(.flairselector),
+	.res-commentNavToggle-choices,
+	.RESMacroDropdown,
+	.hover-bubble,
+	.usertext.cloneable {
+		background: $pop-back-nm;
+	}
+
+	.pretty-form textarea,
+	.pretty-form input[type=password],
+	.pretty-form input[type=number],
+	input[type=text],
+	input[type=number],
+	input[type=password],
+	input:not([type]),
+	textarea,
+	select,
+	.linkinfo,
+	.link .usertext-body .md {
+		background: $body-back-nm !important;
+		color: $col-nm !important;
+		border: none !important;
+	}
+
+	.side .res-sr-style-toggle,
+	.side .leavemoderator,
+	.side .leavecontributor-button,
+	.side .sr_style_toggle,
+	.side .flairtoggle label,
+	.side .flairtoggle + .tagline,
+	.side .md > blockquote:first-child,
+	.redditname:after,
+	.redditname:after {
+		background: $pop-back-nm !important;
+	}
+
+	#editShortcutDialog:after,
+	#RESShortcutsAddFormContainer:after {
+		box-shadow: inset 0 -41px 0 $pop-back-nm, 2px 2px 2px rgba(0, 0, 0, 0.1)
+	}
+
+	// Race of specificity!
+	// Quick and dirty way of allowing styles to overwrite each other
+	// although they're both selecting the same elements.
+	// Not the best for performance, but it's pretty clean
+	.side .md > h2:nth-of-type(1),
+	.side .md > h2:nth-of-type(1) ~ h2:nth-of-type(3) {
+		&:before,
+		& ~ * {
+			background: $pop-back-nm;
+		}
+	}
+
+	.side .md > h2:nth-of-type(2),
+	.side .md > h2:nth-of-type(2) ~ h2:nth-of-type(4) {
+		&:before,
+		& ~ * {
+			background: $card-back-nm;
+		}
+	}
+
+	.side .flairtoggle + .tagline .author {
+		border-left: 1px solid $card-back-nm;
+		box-shadow: -10px 0 $pop-back-nm;
+	}
+
+	.side h6 + blockquote:hover > p:before,
+	.side h6 + blockquote:hover > ul:before {
+		background: $pop-back-nm;
+		color: $col-nm;
+	}
+
+	.tabmenu li a,
+	.stylesheet-customize-container > form > h2,
+	.create-reddit:before,
+	.wiki-page-content > .md:first-child > h1,
+	.flair-settings h1:before {
+		background: $card-back-nm !important;
+		color: $col-nm !important;
+	}
+
+	.titlebox,
+	.redditname,
+	.side .sidecontentbox .content {
+		background: transparent !important;
+	}
+
+	.side .subscribe-button,
+	.side .res-fancy-toggle-button {
+		background: $pop-back-lighter-nm;
+	}
+
+	.usertext.cloneable {
+		border: none;
+	}
+}
+
+}

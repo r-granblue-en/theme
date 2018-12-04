@@ -1,0 +1,673 @@
+@import "./utils.scss";
+
+.archived-infobar,
+.locked-infobar {
+	margin: 0;
+	padding: 10px;
+	border: 10px solid $card-back;
+	border-radius: 0 $master-border-radius $master-border-radius 0;
+	box-shadow: none;
+	margin-bottom: $mini-gap;
+
+	&:before {
+		border-radius: $master-border-radius 0 0 $master-border-radius;
+	}
+}
+
+.locked-infobar:before {
+	background-color: $info-locked !important;
+}
+
+.reddit-infobar ~ #siteTable .link .parent {
+	border-radius: 3px 0 0 3px;
+}
+
+.comments-page .link {
+	.title {
+		margin-top: 4px;
+	}
+
+	.tagline {
+		margin-top: 4px;
+		margin-bottom: 14px;
+	}
+
+	.midcol {
+		margin-top: 7px;
+	}
+}
+
+.comments-page .expando {
+	margin-bottom: 5px;
+}
+
+body.comments-page .link .entry {
+	border-radius: 0 $master-border-radius $master-border-radius 0;
+	padding: 8px 0;
+
+	.add-domain-tag,
+	.approval-checkmark ~ .domain:before {
+		margin-top: -3px;
+	}
+}
+
+.usertext-body .md,
+.usertext-edit .md {
+	max-width: 100%;
+
+	.comment & {
+		margin-top: 6px;
+	}
+}
+
+.linklisting > .clearleft:last-child:before {
+	display: none;
+}
+
+.commentarea {
+	background: $card-back;
+	margin-top: $mini-gap;
+	padding-bottom: 2px;
+	border-radius: $master-border-radius;
+
+	.title {
+		margin-right: 4px;
+	}
+
+	.panestack-title {
+		padding: 15px 15px 0px 15px;
+		margin: 0;
+		border: none;
+	}
+
+	.menuarea {
+		position: relative;
+		margin: 3px 15px 0 15px;
+		overflow: visible;
+		color: inherit;
+		z-index: 1000;
+
+		.toggle a {
+			color: inherit;
+		}
+	}
+
+	.infobar {
+		display: inline-block;
+		line-height: 1.3em !important;
+	}
+
+	.menuarea ~ .infobar {
+		display: inline-block;
+		margin-left: 10px !important;
+		margin-bottom: 10px !important;
+		line-height: 1.3em !important;
+	}
+}
+
+body.comment-permalink-page .commentarea .menuarea {
+	margin: 0;
+	padding: 10px;
+
+	+ .infobar {
+		margin-top: 0 !important;
+	}
+}
+
+.comments-page .usertext-edit {
+	max-width: 100% !important;
+	width: auto !important;
+	margin: 0;
+	float: left;
+}
+
+.usertext-edit .md {
+	margin-top: 0;
+}
+
+.commentarea .markhelp {
+	padding: 0;
+	margin: 10px 0 0;
+	border: none;
+	clear: both;
+
+	p:nth-child(2) {
+		display: none;
+	}
+
+	.md {
+		margin-top: 0;
+	}
+}
+
+.usertext.cloneable {
+	margin: 0 0 10px 0;
+	padding: 10px;
+	background: $pop-back;
+}
+
+.commentarea > .usertext.cloneable {
+	border-top: 1px solid $pop-back-vv-slightly-darker;
+	border-bottom: 1px solid $pop-back-vv-slightly-darker;
+	margin: 15px 0;
+}
+
+.usertext-edit textarea {
+	min-width: 500px;
+	max-width: 100%;
+}
+
+.gold-accent.comment-visits-box {
+	border: none;
+	background: $pop-back;
+	color: $pop-col;
+	padding: 6px 8px 6px 10px;
+	border-radius: $small-border-radius;
+	border-left: 5px solid $gold-col;
+	margin-left: 10px;
+	margin-bottom: 10px;
+
+	select {
+		margin-left: 5px;
+	}
+}
+
+.menuarea + .rounded {
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+
+.linkinfo {
+	margin: $sidebar-padding;
+	background: $pop-back;
+	border-color: $pop-back-mod;
+	padding: 8px 8px 0;
+
+	.shortlink {
+		font-size: 0;
+	}
+
+	.shortlink input {
+		border-color: $pop-back-mod;
+		border-bottom: none;
+		text-align: center;
+		background: $card-back;
+		border-radius: $master-border-radius $master-border-radius 0 0;
+		padding: 6px;
+		margin-top: 3px;
+		margin-bottom: -1px;
+		width: 90%;
+		margin-left: 5%;
+		font-size: 12px;
+	}
+}
+
+.comment {
+	position: relative;
+	background: $pop-back-vv-slightly-darker;
+	margin-bottom: 8px;
+	border-left: none !important;
+	border-radius: $small-border-radius !important;
+	padding: 5px 8px 5px 5px;
+	margin-bottom: 8px;
+}
+
+.comment.collapsed,
+.res-commentBoxes .comment.collapsed {
+	padding-top: 8px !important;
+	padding-bottom: 8px !important;
+	padding-left: 0 !important;
+	line-height: 1;
+}
+
+.commentarea > .sitetable > .comment {
+	margin-right: 10px;
+}
+
+.comment .comment {
+	margin-left: 0 !important;
+}
+
+.comment .comment,
+.comment .comment .comment .comment,
+.comment .comment .comment .comment .comment .comment,
+.comment .comment .comment .comment .comment .comment .comment .comment,
+.comment .comment .comment .comment .comment .comment .comment .comment .comment .comment {
+	background-color: $card-back !important;
+}
+
+.comment .comment .comment,
+.comment .comment .comment .comment .comment,
+.comment .comment .comment .comment .comment .comment .comment,
+.comment .comment .comment .comment .comment .comment .comment .comment .comment {
+	background-color: $pop-back-vv-slightly-darker !important;
+}
+
+.comment.spam {
+	background-image: linear-gradient($spam-overlay, $spam-overlay) !important;
+}
+
+.comment.spam > .child {
+	margin-left: 15px;
+	padding-left: 0;
+}
+
+.comment.new-comment,
+.res-commentBoxes .comment.new-comment {
+	border-color: $gold-col !important;
+}
+
+.res-commentBoxes .comment.res-selected {
+	border-color: $highlight-col !important;
+}
+
+.new-comment .usertext-body {
+	background: transparent;
+	border: none;
+	margin: 0;
+}
+
+.comments-page .usertext {
+	.bottom-area {
+		overflow: visible;
+	}
+
+	button {
+		margin: 0;
+	}
+
+	.cancel {
+		@include secondary-btn;
+		margin-left: 6px;
+		box-shadow: none;
+	}
+
+	&.border .usertext-body {
+		background: transparent;
+	}
+}
+
+.comment.collapsed .midcol {
+	display: none;
+}
+
+.comment .usertext {
+	overflow: hidden;
+}
+
+.comment .usertext-body {
+	padding: 0 !important;
+	margin-bottom: 15px !important;
+}
+
+.comment .entry {
+	position: relative;
+	overflow: visible;
+	margin-left: 10px;
+}
+
+.comment .flat-list {
+	position: absolute;
+	bottom: -8px;
+	left: 5px;
+	height: 20px;
+	white-space: nowrap;
+	color: $alert-col;
+	transition: z-index 10ms;
+	transition-delay: 600ms;
+	z-index: 10;
+
+	&:before,
+	&:after {
+		content: $ellipsis;
+		color: $pop-col-lighter;
+		position: absolute;
+		top: 0;
+		left: 100%;
+		margin-left: -35px;
+		width: auto;
+		padding: 0 8px;
+		height: 20px;
+		line-height: 20px;
+		text-align: center;
+	}
+
+	&:before {
+		opacity: 0.7;
+		z-index: 0;
+	}
+
+	&:hover:before {
+		opacity: 1;
+	}
+
+	&:after {
+		background: $pop-back-lighter;
+		color: transparent !important;
+		border-radius: $master-border-radius $master-border-radius 0 0;
+		box-shadow: $modal-drop-shadow;
+		transition: opacity 250ms;
+		transition-delay: 350ms;
+		opacity: 0;
+		z-index: -1;
+	}
+
+	li {
+		background: $pop-back-lighter;
+		width: 110px;
+		height: 20px;
+		line-height: 20px;
+		text-indent: 6px;
+		float: right !important;
+		box-shadow: $modal-drop-shadow;
+		margin-left: 3px;
+		margin-right: -75px;
+		transition: opacity 300ms, height 10ms;
+		transition-delay: 400ms, 800ms;
+		height: 0;
+		opacity: 0;
+		overflow: hidden;
+
+		&:hover {
+			background: $pop-back;
+		}
+
+		> a {
+			display: block;
+			width: 100%;
+		}
+
+		a {
+			color: $pop-col-lighter;
+
+			&:hover {
+				text-decoration: none;
+				opacity: 1 !important;
+			}
+		}
+	}
+
+	li.first {
+		margin-top: 20px;
+		border-radius: 0 $master-border-radius 0 0;
+	}
+}
+
+.commentarea .menuarea .toggle {
+	opacity: 0.7;
+	margin-left: 10px;
+
+	&:hover {
+		opacity: 1;
+	}
+}
+
+// I heard you liked long selectors...
+body.moderator.res .commentarea > .sitetable > .comment > .entry .flat-list li:nth-child(4),
+body:not(.moderator).res .commentarea > .sitetable > .comment > .entry .flat-list li:nth-child(5),
+body.moderator.res .comment .flat-list li:nth-child(5),
+body:not(.moderator).res .comment .flat-list li:nth-child(6),
+body.moderator:not(.res) .commentarea > .sitetable > .comment > .entry .flat-list li:nth-child(3),
+body:not(.moderator):not(.res) .commentarea > .sitetable > .comment > .entry .flat-list li:nth-child(4),
+body.moderator:not(.res) .comment .flat-list li:nth-child(4),
+body:not(.moderator):not(.res) .comment .flat-list li:nth-child(5) {
+	border-radius: 0 0 $master-border-radius $master-border-radius;
+
+	~ li {
+		clear: none;
+		float: none !important;
+		display: inline-block !important;
+		background: transparent;
+		width: auto !important;
+		margin-left: 7px;
+		margin-right: 0;
+		text-indent: 0;
+		height: 20px;
+		opacity: 1;
+		box-shadow: none;
+
+		a {
+			opacity: 0.7;
+		}
+	}
+}
+
+.comment li {
+	display: block !important;
+	clear: both;
+	padding: 0 !important;
+}
+
+.comment .flat-list:hover {
+	z-index: 1001;
+	transition-delay: 0ms;
+
+	&:after {
+		opacity: 1;
+		transition-delay: 50ms;
+	}
+
+	li {
+		opacity: 1;
+		height: 20px;
+		transition-delay: 0ms;
+	}
+}
+
+.comment .morecomments + .flat-list {
+	display: none;
+}
+
+.userattrs {
+	font-size: 0;
+
+	a {
+		font-size: 10px;
+	}
+}
+
+.comment .child {
+	margin-top: 11px;
+}
+
+.comment .child,
+.comment .showreplies {
+	border-left: none;
+}
+
+.morechildren {
+	margin: 15px -5px -5px;
+}
+
+.thing ~ .morechildren {
+	margin: 0 -10px -5px;
+}
+
+.commentarea > .sitetable > .morechildren {
+	margin: 7px;
+}
+
+.comments-page #noresults {
+	padding-top: 45px;
+}
+
+.tagline,
+.search-result-meta {
+	color: inherit;
+	line-height: 8px;
+}
+
+/*.linkflair-S,
+.linkflair-M,
+.linkflair-L,
+.linkflair-XL {
+	&.link .linkflairlabel {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 18px;
+		height: 18px;
+		margin: -9px -10px;
+		background: $card-back;
+		color: transparent;
+		border-radius: 50%;
+		box-sizing: border-box;
+		padding: 0;
+	}
+
+	.linkflairlabel:before {
+		display: none;
+	}
+
+	.linkflairlabel:after {
+		content: "lol";
+	}
+}
+
+.link.linkflair-S .linkflairlabel {
+	box-shadow: inset 0 0 0 7px $flair-small;
+}
+
+.link.linkflair-M .linkflairlabel {
+	box-shadow: inset 0 0 0 6px $flair-medium;
+}
+
+.link.linkflair-L .linkflairlabel {
+	box-shadow: inset 0 0 0 5px $flair-large;
+}
+
+.link.linkflair-XL .linkflairlabel {
+	box-shadow: inset 0 0 0 4px $flair-xlarge;
+}*/
+
+.linkflairlabel a {
+	z-index: 10;
+}
+
+.linkflair-S,
+.linkflair-M,
+.linkflair-L,
+.linkflair-XL {
+	&.link .linkflairlabel {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		min-width: 18px;
+		height: 18px;
+		margin: -9px -10px;
+		color: transparent;
+		box-sizing: border-box;
+		padding: 0;
+		max-width: 16px;
+		transition: max-width cubic-bezier(0.7, 0, 0.3, 1) 500ms;
+		z-index: 9999;
+	}
+
+	.rank:hover ~ .entry .linkflairlabel,
+	.linkflairlabel:hover {
+		max-width: 300px;
+	}
+
+	.linkflairlabel:before,
+	.linkflairlabel:after {
+		content: "";
+		min-width: 18px;
+		height: 18px;
+		border-radius: 50%;
+		top: 0;
+		left: 0;
+		transform: none;
+		background: none;
+	}
+
+	.linkflairlabel:before {
+		content: attr(title);
+		display: block;
+		position: relative;
+		width: auto;
+		color: white;
+		font-size: 12px;
+		text-indent: 28px;
+		line-height: 18px;
+		padding-right: 8px;
+		z-index: 10;
+	}
+
+	.linkflairlabel:after {
+		width: 24px;
+		height: 24px;
+		margin: -3px;
+	}
+
+	.rank:before {
+		content: "";
+		position: absolute;
+		width: 6px;
+		height: 6px;
+		top: 50%;
+		left: 50%;
+		margin: -3px;
+		background: $card-back;
+		border-radius: 50%;
+	}
+}
+
+.link.linkflair-S {
+	.rank {
+		background: $flair-small;
+		color: transparent;
+	}
+
+	.linkflairlabel:after {
+		box-shadow: 0 0 0 400px $flair-small;
+	}
+
+	.linkflairlabel[title="S"]:before {
+		content: $small-text;
+	}
+}
+
+.link.linkflair-M {
+	.rank {
+		background: $flair-medium;
+		color: transparent;
+	}
+
+	.linkflairlabel:after {
+		box-shadow: 0 0 0 400px $flair-medium;
+	}
+
+	.linkflairlabel[title="M"]:before {
+		content: $medium-text;
+	}
+}
+
+.link.linkflair-L {
+	.rank {
+		background: $flair-large;
+		color: transparent;
+	}
+
+	.linkflairlabel:after {
+		box-shadow: 0 0 0 400px $flair-large;
+	}
+
+	.linkflairlabel[title="L"]:before {
+		content: $large-text;
+	}
+}
+
+.link.linkflair-XL {
+	.rank {
+		background: $flair-xlarge;
+		color: transparent;
+	}
+
+	.linkflairlabel:after {
+		box-shadow: 0 0 0 400px $flair-xlarge;
+	}
+
+	.linkflairlabel[title="XL"]:before {
+		content: $xlarge-text;
+	}
+}

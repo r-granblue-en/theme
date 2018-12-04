@@ -1,0 +1,255 @@
+@import "./utils.scss";
+
+form .spacer + .spacer {
+	margin: 10px 0;
+}
+
+.tabmenu.formtab {
+	top: -35px;
+	left: 0;
+	padding-left: 0 !important;
+}
+
+body.submit-page .content[role="main"] {
+	background: $card-back;
+	border-radius: 0 $master-border-radius $master-border-radius $master-border-radius;
+	padding: 15px;
+
+	> h1:first-child {
+		display: none;
+	}
+
+	> .content {
+		margin: 0;
+	}
+}
+
+.formtabs-content,
+.formtabs-content ~ *,
+#sr-form {
+	width: 60% !important;
+	min-width: 520px;
+	border: none;
+	padding-top: 0;
+}
+
+.roundfield,
+.linefield {
+	width: 100%;
+	background: $pop-back;
+	border-radius: $master-border-radius;
+	box-sizing: border-box;
+	color: $pop-col;
+	font-size: 14px;
+	font-weight: normal;
+	border: none !important;
+
+	.usertext-edit {
+		width: 100%;
+		max-width: 100%;
+	}
+
+	textarea,
+	input[type=text],
+	input[type=url] {
+		display: block;
+		width: 100% !important;
+		box-sizing: border-box;
+		border: 1px solid $pop-back-slightly-darker;
+		border-radius: $small-border-radius;
+		text-indent: 0.25em;
+
+		&:focus {
+			border-color: $pop-back-darker;
+		}
+	}
+
+	label,
+	p {
+		font-size: 12px;
+	}
+}
+
+textarea {
+	min-height: 4em;
+}
+
+body #newlink-with-image-upload {
+	.image-upload-drop-target {
+		border: 1px solid $pop-back-slightly-darker;
+		border-radius: $small-border-radius;
+		background: white;
+
+		&.image-upload-drop-active {
+			background: $info-shade;
+			border-color: $highlight-col;
+		}
+	}
+
+	.media-drop-icon {
+		display: none;
+	}
+
+	.file-drop-label {
+		color: $pop-col-lighter;
+		font-size: 12px;
+		padding-left: 0;
+	}
+
+	.image-upload-drop-active .file-drop-label {
+		color: $highlight-col;
+	}
+}
+
+#url-field {
+	margin-top: 10px;
+}
+
+.usertext .bottom-area {
+	margin-top: 8px;
+	line-height: 16px;
+}
+
+.required-roundfield:before {
+	display: none;
+}
+
+.usertext-buttons {
+	float: left;
+}
+
+.bottom-area .error:not(:empty) {
+	margin: -3px 8px;
+	display: inline-block !important;
+}
+
+.required-roundfield:after {
+	content: $required;
+	color: $alert-col;
+	font-size: 9px;
+	margin-left: 5px;
+	vertical-align: super;
+}
+
+.roundfield-description {
+	font-size: 0;
+	vertical-align: super;
+	color: $pop-col-lighter;
+}
+
+.roundfield-description:after {
+	content: $optional;
+	font-size: 9px;
+}
+
+#items-required {
+	display: none;
+}
+
+#reddit-field > div > div:first-of-type {
+	line-height: 0;
+	margin: 10px 0;
+
+	label ~ input {
+		margin-left: 6px !important;
+	}
+}
+
+#submit_type_profile ~ br {
+	display: none;
+}
+
+#sr-autocomplete-area {
+	margin-bottom: 5px;
+}
+
+#sr-autocomplete[disabled] {
+	display: none;
+}
+
+.commentingAs {
+	text-indent: 1px;
+}
+
+.usertext .markhelp {
+	border: 1px solid $pop-back-slightly-darker;
+	border-radius: $small-border-radius;
+	padding: 10px;
+	margin-top: 8px;
+
+	.md {
+		margin-bottom: 0;
+	}
+
+	td {
+		border-color: $pop-back-slightly-darker;
+		background: white;
+	}
+
+	tr:first-child td {
+		background: $pop-back;
+
+		em {
+			font-style: normal;
+			font-weight: bold;
+			font-size: 0;
+			line-height: 0;
+		}
+
+		em:after {
+			content: $you-type;
+			font-size: 13px;
+		}
+
+		+ td em:after {
+			content: $you-see;
+		}
+	}
+}
+
+.submit_text {
+	padding-left: 37px !important;
+
+	&.enabled {
+		display: block;
+		background: $info-shade;
+	}
+
+	&:before {
+		top: 10px;
+		left: 11px;
+		margin: 0;
+	}
+
+	h1 {
+		margin-top: 0;
+		margin-bottom: 0.25em;
+	}
+}
+
+#suggested-reddits {
+	ul {
+		text-align: justify;
+	}
+
+	li {
+		display: inline;
+		padding: 0;
+
+		a {
+			display: inline-block;
+			margin: 2px 1px;
+		}
+	}
+}
+
+.sr-name-row {
+	font-size: 13px;
+	padding: 2px 5px;
+	color: $pop-col;
+
+	&.sr-selected {
+		background: $pop-back-mod;
+		color: $pop-col;
+	}
+}

@@ -1,20 +1,127 @@
+@import "./utils.scss";
+
 .approval-checkmark {
-	display: none;
+	position: absolute;
+	width: 18px;
+	height: 15px;
+	top: 5px;
+	right: 6px;
+	opacity: 0;
+	z-index: 10;
 }
 
 .approval-checkmark ~ .domain {
 	&:before {
 		content: $approved-msg;
+		display: block;
 		position: relative;
-		top: 5px;
-		right: 0;
-		padding: 3px 5px;
-		border-radius: 2px;
-		background: #55c308; // #08c31f;
-		font-size: 8px;
+		width: 15px;
+		height: 15px;
+		text-align: center;
+		border-radius: $small-border-radius;
+		background: #55c308;
+		font-size: 10px;
 		letter-spacing: 0.03em;
 		font-weight: bold;
-		line-height: 1;
+		line-height: 16px;
+		text-indent: -1px;
 		color: white;
 	}
+}
+
+body.moderator {
+	.link .flat-list {
+		position: relative;
+		text-align: right;
+		color: $highlight-col;
+
+		.big-mod-buttons,
+		.pretty-button.neutral.pressed {
+			margin-bottom: 0;
+		}
+	}
+
+	.link .flat-list:after {
+		content: "";
+		display: table;
+		clear: left;
+	}
+
+	.entry .buttons > li:not(.reported-stamp) {
+		float: left;
+	}
+}
+
+.entry .buttons li.reported-stamp,
+.big-mod-buttons .pretty-button {
+	border: none !important;
+	color: black;
+	margin-bottom: 0;
+	height: 20px;
+	line-height: 20px;
+	padding: 0 10px;
+	border-radius: $master-border-radius;
+
+	.listing-page & {
+		margin-top: -1px;
+	}
+}
+
+.reported-stamp {
+	background: $reports-col !important;
+}
+
+.pretty-button.negative {
+	background: $negative-col;
+}
+
+.pretty-button.neutral {
+	background: $neutral-col;
+}
+
+.pretty-button.positive {
+	background: $positive-col;
+}
+
+.pretty-button.neutral.pressed,
+.pretty-button.positive.pressed {
+	background: $pressed-col;
+	color: white !important;
+}
+
+$side-addjust: $sidebar-width + $side-gap * 3 + $sidebar-main-gap + 9px;
+
+ul.report-reasons {
+	width: auto;
+	min-width: 350px;
+	clear: left;
+	float: left;
+	text-align: left;
+	border: none;
+	color: #1a1b1b;
+	border-radius: $master-border-radius;
+	margin-top: 6px;
+	padding: 4px 0;
+	transform: translateX(calc(100vw - #{$side-addjust} - 100%));
+}
+
+.expando-button.expanded ~ ul .report-reasons,
+.comments-page .report-reasons {
+	float: none;
+	transform: none;
+}
+
+.report-reasons li {
+	line-height: 1.3 !important;
+}
+
+.comments-page .reported-stamp {
+	clear: left;
+}
+
+.comments-page .link .reported-stamp,
+.comments-page .link .big-mod-buttons {
+	margin-top: 5px;
+	display: block;
+	float: left;
 }

@@ -1,0 +1,97 @@
+@import "./utils.scss";
+
+.wiki-page {
+	h2 {
+		color: $pop-col !important;
+	}
+
+	.wikititle {
+		position: absolute;
+		width: 100%;
+		top: 0;
+		margin: 0;
+		background: white;
+		height: 60px;
+		line-height: 40px;
+		padding: 10px 20px;
+		box-sizing: border-box;
+		border-radius: 0 3px 3px;
+	}
+
+	.pageactions {
+		margin: 0;
+		margin-top: $mini-gap;
+		border: none;
+	}
+
+	.wikititle + .pageactions {
+		margin-top: 60px + $mini-gap;
+	}
+
+	.wiki-page-content {
+		width: 100%;
+		box-sizing: border-box;
+		margin: 0;
+	}
+
+	.nextprev + button,
+	#siteTable + button {
+		margin-top: 15px;
+	}
+
+	.nextprev a {
+		margin-right: 4px;
+		font-size: 11px;
+	}
+
+	.wiki-page-content .throbber {
+		margin: 5px 0 0 8px;
+	}
+
+	.wiki-page-content .discussionlink {
+		width: 250px;
+		padding-right: 0;
+		margin: 15px 0 0;
+	}
+
+	.link .midcol {
+		margin-left: 0;
+	}
+
+	#siteTable {
+		margin-top: 10px;
+
+		.link {
+			border-bottom: none !important;
+
+			~ .link {
+				border-top: 1px solid $body-back;
+			}
+		}
+	}
+
+	.wiki-page-content .wiki > .toc > ul {
+		border: none;
+		background: $pop-back-slightly-lighter;
+		border-radius: $master-border-radius;
+	}
+
+	.wiki-page-content .wiki_button {
+		padding: 0 14px;
+	}
+
+	#noresults {
+		padding: 40px;
+	}
+
+	.reddit-infobar {
+		box-shadow: none;
+	}
+}
+
+.wiki-page-content .md {
+	h1,
+	h2 {
+		margin-top: 0;
+	}
+}

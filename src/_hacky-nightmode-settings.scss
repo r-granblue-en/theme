@@ -1,0 +1,18 @@
+@import "./filters.scss";
+
+$body-back-nm: #222;
+$card-back-nm: #3c3c3c;
+$header-back-nm: #444;
+$highlight-col-nm: #abdfff;
+$col-nm: #fff;
+$col-darker-nm: #ddd;
+
+$pop-back-nm: #333;
+$pop-back-lighter-nm: #545454;
+$pop-back-slightly-darker-nm: #373737;
+
+@mixin if-nm {
+	@if ($support-hacky-nightmode) {
+		@content;
+	}
+}

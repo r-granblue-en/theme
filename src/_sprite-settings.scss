@@ -1,0 +1,75 @@
+@import "./flags.scss";
+
+$image-width: 1000;
+$image-height: 600;
+$padding: [0,0];
+$downsampling: 2;
+
+// Points
+// Main logo
+$p-logo: [0,0];
+
+// Header icons
+$p-beta: [0,0];
+$p-switch: [30,0];
+$p-switch-alt: [30,30];
+$p-mail: [60,0];
+$p-chat: [90,0];
+$p-modmail: [120,0];
+$p-new-modmail: [150,0];
+$p-config: [180,0];
+$p-config-alt: [180,30];
+
+// Arrows
+$p-arrow-up: [0,0];
+$p-arrow-upmod: [0,30];
+$p-arrow-down: [30,0];
+$p-arrow-downmod: [30,30];
+
+// Offsets
+$offs-logo: [0,0];
+$offs-header-icons: [70,0];
+$offs-arrows: [290,0];
+
+// Rects
+$rect-60sq: [60,60];
+$rect-30sq: [30,30];
+
+@mixin set-size($w,$h,$important: false){
+	$back-size: #{round($w / $downsampling)}px #{round($h / $downsampling)}px;
+	
+	@if ($important) {
+		background-size: $back-size !important;
+	}
+
+	@else {
+		background-size: $back-size;
+	}
+}
+
+@mixin set-size-rel($w,$h,$important: false){
+	$back-w: round($image-width / $w / $downsampling * 100);
+	$back-h: round($image-height / $h / $downsampling * 100);
+	
+	@if ($important) {
+		background-size: $back-w+"%" $back-h+"%" !important;
+	}
+
+	@else {
+		background-size: percentage($back-w / 100) percentage($back-h / 100);
+	}
+}
+
+@mixin map-rect($point,$offs) {
+	$x: nth($offs,1) + nth($point,1) + nth($padding,1);
+	$y: nth($offs,2) + nth($point,2) + nth($padding,2);
+
+	background-position: #{round($x * -1)}px #{round($y * -1)}px;
+}
+
+@mixin map-rect-rel($point,$offs) {
+	$x: round((nth($offs,1) + nth($point,1) + nth($padding,1)) / $image-width * 10000 * $downsampling);
+	$y: round((nth($offs,2) + nth($point,2) + nth($padding,2)) / $image-height * 10000 * $downsampling);
+
+	background-position: percentage($x / 10000) percentage($y / 10000);
+}

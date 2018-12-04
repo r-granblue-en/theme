@@ -12,3 +12,4 @@ app.listen(2005,function(){
 });
 
 app.use("/src",express.static(path.join(__dirname,"src")));
+app.use("/img",express.static(path.join(__dirname,"img")));

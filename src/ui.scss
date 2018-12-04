@@ -1,0 +1,876 @@
+@import "utils.scss";
+
+body {
+	color: $pop-col;
+	font-family: Segoe, "PT Sans", Arial, sans-serif;
+	background: $body-back;
+}
+
+body:after {
+	content: $scroll-overflow-msg;
+	position: fixed;
+	top: -300px;
+	left: 0;
+	width: 100%;
+	height: 300px;
+	background: $header-back;
+	text-align: center;
+	line-height: 500px;
+	z-index: -1;
+}
+
+input,
+textarea {
+	font: inherit;
+	outline: none;
+	color: $pop-col;
+}
+
+.pretty-form input[type=text],
+.pretty-form textarea,
+.pretty-form input[type=password],
+.pretty-form input[type=number],
+input[type=text],
+input[type=number],
+input[type=password],
+input:not([type]),
+textarea {
+	box-sizing: border-box;
+	border: 1px solid $pop-back-slightly-darker;
+	background: $pop-back;
+	border-radius: $small-border-radius !important;
+	text-indent: 0.25em;
+	box-shadow: none;
+
+	&:focus {
+		border-color: $pop-back-darker;
+	}
+}
+
+.pretty-form,
+.roundfield {
+	input[type=text],
+	textarea,
+	input[type=password],
+	input[type=number] {
+		background: $card-back;
+	}
+}
+
+input[type=text]:focus {
+	background: $card-back !important;
+}
+
+input[type=checkbox],
+input[type=radio] {
+	position: relative;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	display: inline-block;
+	margin: 2px 5px 2px 0 !important;
+	width: 15px !important;
+	height: 15px !important;
+	line-height: 16px;
+	border-radius: $master-border-radius;
+	box-shadow: inset 0 0 0 2px $pop-back-darker;
+	vertical-align: -6px;
+	cursor: pointer;
+
+	&:checked {
+		background: $pop-back-darker;
+		box-shadow: none;
+	}
+}
+
+input[type=radio]:checked {
+	background: $pop-col-more-light;
+	box-shadow: inset 0 0 0 4px $pop-back-darker;
+}
+
+input[type=radio] {
+	border-radius: 50%;
+}
+
+input[type=checkbox]:after {
+	content: none;
+}
+
+input[type=checkbox]:checked:after {
+	content: $checkbox-checked-icon;
+	display: block;
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	font-family: inherit;
+	font-size: 13px;
+	line-height: 16px;
+	font-weight: bold;
+	color: white;
+	padding: 0;
+}
+
+select,
+body.mod-toolbox select.tb-action-button {
+	position: relative;
+	-webkit-appearance: none;
+	border: 1px solid $pop-back-slightly-darker;
+	color: $pop-col-lighter;
+	border-radius: $small-border-radius;
+	background: $card-back;
+	height: 17px;
+	padding: 0 6px 1px;
+	min-width: 100px;
+	outline: none;
+	box-sizing: content-box;
+}
+
+select:focus {
+	border-color: $pop-back-darker;
+	color: $pop-col;
+}
+
+label {
+	color: $pop-col;
+	cursor: pointer;
+}
+
+textarea {
+	display: block;
+	text-indent: 0 !important;
+	padding: 5px 8px !important;
+
+	&:focus {
+		border-color: $pop-back-darker;
+	}
+}
+
+hr {
+	height: 1px;
+	background: $body-back;
+	border: none;
+}
+
+a,
+.tagline a,
+.search-result-meta a,
+.md a {
+	color: $a-col;
+}
+
+.hover-bubble {
+	z-index: 10000;
+	border: none;
+	border-radius: $master-border-radius;
+	box-shadow: 0 2px 2px 1px rgba(0,0,0,0.07);
+	background: $card-back;
+	color: $pop-col;
+}
+
+.hover-bubble.multi-selector strong {
+	color: inherit;
+}
+
+.hover-bubble:before,
+.hover-bubble:after {
+	pointer-events: none;
+}
+
+.hover-bubble.anchor-right:before {
+	border-left-color: $body-back;
+	margin-top: 1px;
+}
+
+.hover-bubble.anchor-right:after {
+	border-left-color: $card-back;
+}
+
+.hover-bubble.anchor-top:before {
+	border: none;
+}
+
+.hover-bubble.anchor-top:after {
+	border-bottom-color: $card-back;
+}
+
+.hover-bubble.multi-selector {
+	padding: 0 0 6px 0 !important;
+}
+
+.multi-selector .title {
+	background: $pop-back;
+	padding: 5px;
+	line-height: 1.1;
+	border-radius: $master-border-radius $master-border-radius 0 0;
+}
+
+.hover-bubble.multi-selector .multi-list {
+	margin-top: 7px;
+}
+
+.multi-name {
+	background: $pop-back !important;
+	border: none !important;
+	height: 25px;
+	padding: 0 8px !important;
+}
+
+.hover-bubble.multi-selector label {
+	padding: 4px 12px;
+}
+
+.hover-bubble.multi-selector label:hover {
+	background: transparent;
+}
+
+.hover-bubble.multi-selector .throbber {
+	top: 12px;
+	right: 10px;
+}
+
+.throbber,
+.flairthrobber,
+.flairselector.active[style*="18px"] {
+	position: relative;
+	background: none;
+
+	&:before,
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: $throbber-col;
+		border-radius: 20%;
+		animation: tifu-throb 1s infinite;
+	}
+
+	&:after {
+		animation-delay: -400ms !important;
+	}
+}
+
+@keyframes tifu-throb {
+	0% {
+		transform: scale(0) rotate(0deg);
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.5;
+	}
+
+	100% {
+		transform: scale(1) rotate(90deg);
+		opacity: 0;
+	}
+}
+
+#beta-help {
+	padding: 4px 4px;
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.07);
+	transform: translate(-8px, 7px);
+}
+
+.debuginfo {
+	height: 0;
+}
+
+.modal {
+	z-index: 10005;
+}
+
+.modal-content {
+	background: $pop-back;
+	border-radius: $master-border-radius !important;
+	box-shadow: $modal-drop-shadow !important;
+	border: none !important;
+	overflow: hidden;
+}
+
+.modal-header {
+	background: $pop-back !important;
+}
+
+.modal-header-title {
+	color: $pop-col !important;
+}
+
+.modal a {
+	color: $highlight-col !important;
+}
+
+.modal button {
+	height: 30px;
+	line-height: 28px;
+	padding: 0 15px;
+}
+
+.modal-backdrop {
+	opacity: 1 !important;
+	background: $modal-shadow-back;
+}
+
+.save-preferences {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+
+.lang-modal {
+	.modal-content {
+		padding-bottom: 25px;
+	}
+}
+
+.report-modal {
+	.report-form-bottom-panel {
+		margin-top: 25px;
+		height: 30px;
+		line-height: 30px;
+	}
+
+	.report-reason-item {
+		height: auto;
+		margin: 15px 0;
+	}
+}
+
+.report-reason-display {
+	font-size: 14px !important;
+	margin-left: 25px !important;
+	color: $pop-col !important;
+}
+
+input:checked + .report-reason-display {
+	font-weight: bold;
+}
+
+.report-form-block-user {
+	border: 1px solid #eee;
+	padding: 10px 15px;
+	border-radius: $master-border-radius;
+	margin-bottom: -30px;
+
+	p {
+		color: $pop-col-lighter !important;
+	}
+}
+
+button,
+.blueButton,
+.RESHoverTitle .fancy-toggle-button a,
+input[type="submit"],
+.RESNotification .RESNotificationButtonBlue {
+	height: 26px;
+	@include standard-btn;
+
+	&[disabled] {
+		background: $pop-back-darker;
+		opacity: 0.8;
+	}
+}
+
+input[type="file"] {
+	cursor: pointer;
+}
+
+.flairdeletebtn {
+	background: $alert-col-mild;
+	color: white;
+	margin-left: 0;
+}
+
+.flair-settings ~ .tabpane-content button[type=submit] {
+	margin-right: 6px;
+}
+
+// For some reason SASS crashes if I try to make this prettier
+button + button,
+button + input[type="submit"],
+input[type="submit"] + button,
+input[type="submit"] + input[type="submit"] {
+	margin-left: 6px;
+}
+
+// standard subdued buttons
+body.mod-toolbox .tb-general-button,
+body.mod-toolbox .tb-action-button:not(select),
+body.mod-toolbox .tb-action-button.inline-button,
+.pretty-button,
+.RESSubscriptionButton,
+.reported-stamp,
+.title-button,
+a.title-button.gold {
+	display: inline-block;
+	height: 20px;
+	line-height: 20px;
+	padding: 0 10px !important;
+	border-radius: $small-border-radius !important;
+	background: $subdued-btn-back;
+	color: $subdued-btn-col !important;
+	vertical-align: top;
+	border: none !important;
+	box-shadow: inset 0 -2px rgba(0, 0, 0, 0.1) !important;
+
+	&:hover {
+		background: $subdued-btn-back-mod;
+	}
+}
+
+// Subdued variation: gold button
+a.title-button.gold:hover {
+	background: #f7e567;
+}
+
+// Faux modals (dropdowns)
+.modtools .drop-choices {
+	/*position: fixed;
+	top: 50% !important;
+	left: 50% !important;
+	transform: translate(-50%,-50%);
+	box-shadow: $modal-shadow, $modal-drop-shadow;
+	border-radius: $master-border-radius;*/
+	text-align: left;
+	//z-index: 10000;
+
+	/*.choice {
+		padding: 6px 10px;
+
+		&:hover {
+			background: $pop-back;
+		}
+	}*/
+}
+
+@mixin tabmenu {
+	position: absolute;
+	left: $side-gap;
+	bottom: 0;
+	margin: 0;
+	height: 35px;
+	overflow: hidden !important;
+}
+
+@mixin tabmenu-item {
+	position: relative;
+	float: left;
+	height: 40px;
+	margin: 0;
+	overflow: hidden;
+	margin-right: 1px !important;
+}
+
+@mixin tabmenu-shadow {
+	content: "";
+	display: block;
+	position: absolute;
+	left: -5px;
+	bottom: 0;
+	width: 100%;
+	height: 3px;
+	padding: 0 5px;
+	box-shadow: 0 0 25px 5px rgba(113, 113, 113, 0.15);
+}
+
+@mixin tabmenu-link {
+	display: block;
+	height: 100%;
+	background: $card-back !important;
+	color: $main-col !important;
+	border: none !important;
+	border-radius: $master-border-radius;
+	padding: 0 15px !important;
+	line-height: 30px !important;
+	margin-top: 6px !important;
+	font-weight: bold !important;
+	font-size: 12px !important;
+}
+
+@mixin tabmenu-link-active {
+	background: $card-back !important;
+	color: $highlight-col !important;
+	margin-top: 0 !important;
+	line-height: 35px !important;
+	border: none;
+	border-top: 2px solid $secondary-highlight-col !important;
+}
+
+.tabmenu {
+	@include tabmenu;
+
+	li {
+		@include tabmenu-item;
+
+		&:before {
+			@include tabmenu-shadow;
+		}
+
+		&.selected:before {
+			content: none;
+		}
+
+		a {
+			@include tabmenu-link;
+		}
+
+		&.selected a {
+			@include tabmenu-link-active;
+		}
+	}
+}
+
+.wiki-page .pageactions {
+	height: 35px;
+	border-radius: 0;
+	overflow: hidden;
+
+	.wikiaction {
+		position: relative;
+		margin: 0 1px 0 0;
+		float: left;
+		overflow: hidden;
+		@include tabmenu-link;
+
+		&:before {
+			@include tabmenu-shadow;
+		}
+
+		&.wikiaction-current {
+			@include tabmenu-link-active;
+
+			&:before {
+				content: none;
+			}
+		}
+	}
+}
+
+.infobar,
+.info-notice,
+.submit_text {
+	position: relative;
+	border-radius: 3px;
+	background: $info-shade !important;
+	color: $info-col !important;
+	padding: 8px 12px 8px 38px !important;
+	border: none !important;
+	line-height: 1.2;
+	cursor: default;
+
+	a {
+		font-weight: bold;
+		color: inherit;
+	}
+}
+
+.error {
+	display: block;
+	padding: 7px 10px;
+	background: $spam-overlay;
+	color: $alert-col;
+	font-weight: bold;
+	border-radius: $master-border-radius;
+	font-size: 12px;
+
+	&:empty {
+		display: none;
+	}
+
+	a {
+		color: inherit !important;
+		font-weight: bold !important;
+		opacity: 0.7;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+.error,
+.infobar,
+.info-notice,
+.submit_text {
+	&:before {
+		content: "!";
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		background: $alert-col;
+		color: white;
+		border-radius: 50%;
+		text-align: center;
+		vertical-align: middle;
+		width: 17px;
+		height: 17px;
+		line-height: 18px;
+		font-weight: 900;
+		font-size: 13px;
+		margin-right: 8px;
+		text-shadow: 1px 1px rgba(0,0,0,0.15);
+		box-shadow: inset -2px -2px rgba(0,0,0,0.15);
+	}
+}
+
+.infobar,
+.info-notice,
+.submit_text {
+	&:before {
+		content: "i";
+		position: absolute;
+		top: 50%;
+		left: 11px;
+		margin-top: -8px;
+		background: $highlight-col;
+	}
+}
+
+.res-filterline-show-help:before,
+.content[role=main] .help-hoverable:before {
+	content: "i";
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	color: white;
+	background: $highlight-col;
+	text-align: center;
+	border-radius: 50%;
+	line-height: 18px;
+	font-weight: 900;
+	font-size: 13px;
+	text-shadow: 1px 1px rgba(0,0,0,0.15);
+	box-shadow: inset -2px -2px rgba(0,0,0,0.15);
+}
+
+.help-hoverable {
+	font-size: 0;
+
+	&:before {
+		margin-left: 2px;
+		vertical-align: -2px;
+	}
+}
+
+.content[role=main] .help-hoverable:not(:hover):before {
+	background: $pop-col-lighter;
+	opacity: 0.7;
+}
+
+.flair,
+.linkflairlabel {
+	position: relative;
+	overflow: hidden;
+	border: none;
+	height: 15px;
+	vertical-align: middle;
+	background: transparent;
+	z-index: 100;
+	padding: 0 6px 0 17px;
+	line-height: 16px;
+	margin-left: 5px;
+	cursor: default;
+	max-width: initial;
+	border-radius: $master-border-radius;
+	color: $pop-col;
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: -2px;
+		left: 4px;
+		width: 20px;
+		height: 20px;
+		border-radius: $small-border-radius;
+		background: $pop-back-slightly-darker;
+		transform: translateY(-0.5px) rotate(45deg);
+		background-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.25) 14%, transparent 14%);
+		background-position: -3px 3px;
+		z-index: -1;
+	}
+
+	&:after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 15px;
+		width: 100%;
+		height: 100%;
+		background: $pop-back-slightly-darker;
+		z-index: -1;
+	}
+}
+
+.linkflairlabel {
+	margin-left: 0;
+
+	.title ~ & {
+		margin-left: 5px;
+	}
+}
+
+// Raster
+.preview img {
+	background-position: 0 0, 6px 6px;
+	background-size: 12px 12px;
+	background-image: linear-gradient(45deg, #f9f9f9 25%, transparent 25%, transparent 75%, #f9f9f9 75%, #f9f9f9 100%), linear-gradient(45deg, #f9f9f9 25%, #eee 25%, #eee 75%, #f9f9f9 75%, #f9f9f9 100%);
+}
+
+// Clearfix
+.stylesheet-customize-container {
+	&:after {
+		content: "";
+		display: table;
+		clear: left;
+	}
+}
+
+// Close icon
+.delete_sr_img-button .togglebutton,
+.RESCloseButton:not(.RESFadeButton),
+.guiders_x_button,
+#search_hidemore,
+.listingsignupbar__close,
+.modal-header-close {
+	font-size: 0 !important;
+	text-align: center;
+	background: none;
+	color: $pop-col;
+
+	&:before {
+		content: $cross-icon;
+		font-size: 12px;
+	}
+}
+
+.modal-header-close a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+}
+
+// Standard dropdowns
+.dropdown {
+	z-index: 20;
+}
+
+.res-filterline-dropdown,
+#sr-drop-down,
+.drop-choices:not(.flairselector),
+.res-commentNavToggle-choices,
+.RESMacroDropdown {
+	display: block;
+	background: $card-back;
+	box-shadow: $modal-drop-shadow;
+	padding-top: $dropdown-font-size + $dropdown-padding-tb * 2 !important;
+	margin-top: -($dropdown-font-size + $dropdown-padding-tb) !important;
+	padding: 0;
+	max-height: 0px;
+	overflow: hidden;
+	opacity: 0;
+	border: none;
+	cursor: pointer;
+	transition: max-height 300ms, opacity 300ms, pointer-events 300ms;
+	transition-delay: 0ms, 300ms, 300ms;
+	border-radius: $master-border-radius;
+	z-index: 19;
+}
+
+.drop-choices:not(.inuse) {
+	cursor: inherit;
+}
+
+.res-commentNavToggle-choices {
+	z-index: -1;
+}
+
+.res-filterline-preamble:hover .res-filterline-dropdown,
+.res-commentNavToggle:hover .res-commentNavToggle-choices,
+.drop-choices.inuse,
+.RESMacroWrappingSpan .openMacro + span,
+#sort-menu[style*="block"] {
+	max-height: 150px;
+	overflow: auto;
+	opacity: 1;
+	pointer-events: auto;
+	transition-delay: 0ms;
+}
+
+// Dropdown items
+.drop-choices a.choice,
+.res-commentNavToggle-type,
+.RESMacroDropdownList li a {
+	display: block;
+	position: relative;
+	padding: $dropdown-padding-tb $dropdown-padding-lr;
+	color: inherit;
+	line-height: 1;
+	padding: 5px 8px;
+	font-size: $dropdown-font-size;
+	font-weight: normal;
+	box-sizing: border-box;
+	cursor: pointer;
+	border: none !important;
+
+	&:hover {
+		background: $pop-back;
+		color: $pop-col-lighter;
+		text-decoration: none;
+	}
+}
+
+.drop-choices a.choice,
+.res-commentNavToggle-type,
+.RESMacroDropdownList li {
+	&:first-child:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 5%;
+		width: 90%;
+		height: 1px;
+		background: $body-back;
+	}
+}
+
+.srdrop .choice.bottom-option {
+	border: none;
+	font-style: normal;
+	font-weight: 600;
+}
+
+.dropdown.lightdrop .selected,
+.res-commentNavToggle,
+.RESMacroDropdownTitle {
+	position: relative;
+	background: none;
+	color: $pop-col-lighter;
+	font-size: $dropdown-font-size;
+	line-height: 1;
+	font-weight: bold;
+	text-decoration: none;
+	padding-left: 2px;
+	padding-right: 0;
+	white-space: nowrap;
+	cursor: pointer;
+	z-index: 100000;
+}
+
+.res-commentNavToggle:after {
+	display: none;
+}
+
+.drop-choices.lightdrop {
+	margin-left: -$dropdown-padding-lr + 2;
+}
+
+.res-commentNavToggle-choices {
+	margin-left: -$dropdown-padding-lr + 1;
+}
+
+.reddit-infobar {
+	margin-top: 0;
+}

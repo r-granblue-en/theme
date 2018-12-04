@@ -1,9 +1,11 @@
 @import "./utils.scss";
 
+$faux-form-item-padding: 0 8px;
+
 .side {
 	position: relative;
-	background: white;
-	margin: 0 20px;
+	background: $card-back;
+	margin: 0 $side-gap 0 $sidebar-main-gap;
 	border-radius: $master-border-radius;
 	z-index: 1001;
 	width: $sidebar-width;
@@ -51,7 +53,6 @@
 
 	.redditname a:after {
 		content: $sub-name;
-		color: #666;
 		font-size: 20px;
 		letter-spacing: 0.02em;
 		margin-left: 2px;
@@ -61,7 +62,8 @@
 		text-decoration: none;
 	}
 
-	body.loggedin & .redditname:after {
+	body.loggedin & .redditname:after,
+	body.res & .redditname:after {
 		content: $settings-text;
 		display: block;
 		position: absolute;
@@ -69,13 +71,9 @@
 		height: 25px;
 		background: $pop-back;
 		top: 85px;
-		font-size: 12px;
-		font-weight: 600;
 		line-height: 30px;
-		padding: 0 8px;
+		padding: $faux-form-item-padding;
 		box-sizing: border-box;
-		text-transform: uppercase;
-		color: $pop-col;
 	}
 
 	body:not(.res) & .side .subscribe-button a {
@@ -100,6 +98,7 @@
 
 	.subscribe-button,
 	.res-fancy-toggle-button {
+		@include secondary-btn;
 		position: relative;
 		flex-grow: 1;
 		flex-basis: 0;
@@ -107,35 +106,41 @@
 		line-height: 25px;
 		padding: 0;
 		margin: 0;
-		border: none;
-		background: $pop-back;
-		color: $main-back-overlay-col;
 		font-size: 11px;
-		border-radius: 2px;
-		box-shadow: inset 0 -2px rgba(0, 0, 0, 0.05);
+	}
+
+	body.loggedin.res & .subscribe-button {
+		display: flex !important;
 	}
 
 	.subscribe-button.toggle .option.active {
 		display: block;
+		color: $main-back-overlay-col !important;
 	}
 
-	.subscribe-button:hover,
-	.res-fancy-toggle-button:hover {
-		background: $pop-back-mod;
-	}
-
-	.subscribe-button .option.add {
+	.subscribe-button .option.add,
+	span.multi-count {
 		@include standard-btn;
+		border-radius: 3px 0 0 3px;
+	}
+
+	span.multi-count {
+		border-radius: 0 3px 3px 0;
+		padding: 0px 6px;
+		margin: 0;
+		line-height: 26px;
+
+		body.subscriber & {
+			background: transparent;
+			box-shadow: none;
+		}
 	}
 
 	.subscribe-button a {
 		position: relative;
+		width: 100%;
 		background-image: none !important;
 		background-color: transparent;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
 		line-height: inherit;
 		padding: 0 12px !important;
 		color: inherit !important;
@@ -192,6 +197,7 @@
 
 	.res-sr-style-toggle,
 	.leavemoderator,
+	.leavecontributor-button,
 	.sr_style_toggle,
 	.flairtoggle label,
 	.flairtoggle + .tagline {
@@ -208,6 +214,7 @@
 
 	.titlebox label,
 	.leavemoderator,
+	.leavecontributor-button,
 	.flairtoggle + .tagline .author {
 		display: block;
 		width: $sidebar-width - 2 * $sidebar-padding;
@@ -215,13 +222,8 @@
 		box-sizing: border-box;
 		height: 25px;
 		line-height: 26px;
-		padding: 0 8px;
+		padding: $faux-form-item-padding;
 		margin: 0;
-	}
-
-
-	.leavemoderator {
-		width: $sidebar-inner-width;
 	}
 
 	.leavemoderator,
@@ -244,6 +246,7 @@
 
 	.res-sr-style-toggle:hover,
 	.leavemoderator:hover,
+	.leavecontributor-button:hover,
 	.sr_style_toggle:hover,
 	.flairtoggle:hover label,
 	.flairtoggle + .tagline:hover,
@@ -255,8 +258,9 @@
 	#sr_style_enabled,
 	#flair_enabled,
 	.leavemoderator:before,
+	.leavecontributor-button:before,
 	.moderator.toggle .main:before {
-		display: none;
+		display: none !important;
 	}
 
 	.titlebox label {
@@ -266,6 +270,7 @@
 
 	.titlebox label:before,
 	.leavemoderator:after,
+	.leavecontributor-button .option:after,
 	.flairtoggle + .tagline .author {
 		font-size: 10.5px;
 	}
@@ -279,6 +284,18 @@
 		content: $you-are-mod;
 	}
 
+	.leavecontributor-button {
+		padding: 0 8px !important;
+
+		.option {
+			font-size: 0;
+
+			&:after {
+				content: $approved-sub-text;
+			}
+		}
+	}
+
 	#sr_style_enabled + label:before {
 		content: $use-theme;
 	}
@@ -289,6 +306,7 @@
 
 	.titlebox label:after,
 	.leavemoderator a:before,
+	.leavecontributor-button a:before,
 	.flairselectbtn:before,
 	.md > blockquote:first-child > h1 + p a:after {
 		content: "";
@@ -305,6 +323,7 @@
 	}
 
 	.leavemoderator a,
+	.leavecontributor-button a,
 	.flairselectbtn,
 	.md > blockquote:first-child > h1 + p a {
 		width: 100%;
@@ -316,9 +335,10 @@
 
 	.titlebox input:checked + label:after,
 	.md > blockquote:first-child > h1 + p a:nth-child(2):after {
-		content: "\2715";
+		content: $checkbox-checked-icon;
 		font-size: 13px;
 		background: $pop-back-darker;
+		font-weight: bold;
 		color: white;
 		text-align: center;
 	}
@@ -348,6 +368,7 @@
 	.md > blockquote:first-child {
 		position: relative;
 		background: $pop-back;
+		color: $pop-col;
 		margin: 0 $sidebar-padding;
 		border: none;
 		overflow: hidden;
@@ -368,8 +389,8 @@
 			padding: 0 8px;
 			line-height: 26px;
 			font-weight: normal;
-			color: $pop-col-lighter;
 			pointer-events: none;
+			color: inherit;
 			z-index: 100;
 		}
 
@@ -383,7 +404,7 @@
 		}
 
 		> h1 + p:hover {
-			background: $pop-back-mod;
+			background: $hover-mod;
 		}
 
 		> h1 + p a {
@@ -399,7 +420,6 @@
 			margin-bottom: 6px;
 			font-size: 12px;
 			font-weight: 600;
-			color: #4e5556;
 		}
 
 		blockquote {
@@ -422,7 +442,7 @@
 			text-transform: uppercase;
 			background: $pop-back-slightly-darker;
 			color: $pop-col;
-			border-radius: 2px;
+			border-radius: $small-border-radius;
 		}
 
 		blockquote h1 + h1 {
@@ -453,7 +473,7 @@
 	h3 {
 		position: relative;
 		color: $pop-col;
-		font-size: 110% !important;
+		font-size: 12px !important;
 		counter-increment: h3c;
 		margin-bottom: 0 !important;
 		font-weight: normal;
@@ -472,8 +492,8 @@
 		top: 7px;
 		text-align: center;
 		border-radius: 50%;
-		background: #6f8588;
-		color: white;
+		background: $pop-col-v-light;
+		color: $pop-back;
 		font-size: 65%;
 		font-weight: bold;
 	}
@@ -521,10 +541,10 @@
 		height: 0;
 		margin-right: 10px;
 		overflow: hidden;
-		background: white;
+		background: inherit;
 		cursor: default;
 		border-right: 2px solid $highlight-col; // #6f8588;
-		border-radius: 2px;
+		border-radius: $small-border-radius;
 		box-sizing: border-box;
 		z-index: 2;
 	}
@@ -553,10 +573,10 @@
 	}
 
 	h6 + blockquote:hover {
-		background: white !important;
+		background: $card-back !important;
 		z-index: 100;
 		box-shadow: 0 0 0 3000px rgba(0,0,0,0.1);
-		border-radius: 2px;
+		border-radius: $small-border-radius;
 	}
 
 	h6 + blockquote:hover > p,
@@ -581,7 +601,7 @@
 			line-height: 25px;
 			padding: 0 10px;
 			box-sizing: border-box;
-			border-radius: 2px 2px 0 0;
+			border-radius: $small-border-radius $small-border-radius 0 0;
 			color: $pop-col;
 			font-weight: bold;
 			background: $pop-back;
@@ -615,7 +635,6 @@
 		box-sizing: content-box;
 		line-height: 60px !important;
 		padding: 20px 0 0 0 !important;
-		color: #6a7071;
 		z-index: 1;
 
 		&:before{
@@ -651,7 +670,7 @@
 	.md > h2:nth-of-type(2) ~ h2:nth-of-type(4) {
 		&:before,
 		& ~ * {
-			background: white;
+			background: $card-back;
 		}
 	}
 
@@ -678,18 +697,29 @@
 		padding-top: 15px !important;
 	}
 
-	.bottom {
-		position: relative;
-		font-size: 0 !important;
-		border: none !important;
-		width: 100%;
-		height: 60px;
-		border-radius: 50%;
-		background: #f5fafb;
-		padding: 0 !important;
-		margin-top: -30px;
-		z-index: -10;
-		margin-bottom: 15px;
+	.md > *:last-child {
+		padding-bottom: 30px !important;
+		
+		&:before {
+			content: "";
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			font-size: 0 !important;
+			border: none !important;
+			width: 100%;
+			height: 60px;
+			border-radius: 0 0 50% 50%;
+			background: inherit;
+			padding: 0 !important;
+			margin-bottom: -15px;
+			z-index: -10;
+		}
+	}
+
+	.md blockquote,
+	.md del {
+		color: inherit;
 	}
 
 	.sidebox.create .spacer {
@@ -711,32 +741,90 @@
 		padding: 0 8px;
 		height: 25px;
 		line-height: 30px;
+		cursor: default;
 	}
 
-	.sidecontentbox .title h1 {
+	#moderation_tools .content {
+		display: block !important;
+		padding-top: 3px;
+
+		li a {
+			background: transparent;
+		}
+	}
+
+	.icon-menu a {
+		background: transparent;
+	}
+
+	.sidecontentbox .title h1,
+	.redditname:after {
 		color: $pop-col;
+		text-transform: uppercase;
 		font-size: 12px;
-		font-weight: bold;
+		font-weight: 600;
 	}
 
 	.sidecontentbox a.helplink {
 		margin: 8px;
 	}
 
-	#moderation_tools {
+	body:not(.wiki-page) & #moderation_tools {
 		margin-top: 30px;
 	}
 
 	body.loggedin & .spacer:last-child {
-		padding-bottom: 10px;
+		padding-bottom: 15px;
 		position: relative;
+	}
+
+	.bottom {
+		border: none;
+		text-align: center;
+		padding-bottom: 15px;
+		margin-bottom: 35px;
+		font-size: 10px;
+		color: $pop-col-lighter;
+		word-spacing: 0.05em;
+
+		.author {
+			margin-right: 0.3em;
+		}
+
+		.age {
+			float: none;
+			font-size: 0;
+		}
+
+		time {
+			font-size: 10px;
+
+			&:after {
+				content: " " $ago-text;
+			}
+		}
+	}
+
+	&:after {
+		content: $credit;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		margin-top: 20px;
+		width: 100%;
+		text-align: center;
+		color: $pop-col;
+		font-size: 10px;
+		word-spacing: 0.1em;
+		white-space: pre;
+		opacity: 0.85;
 	}
 }
 
 #search {
 	position: absolute;
 	width: 100%;
-	height: 1000px;
+	height: 100%;
 	top: 0;
 	left: 0;
 	overflow: hidden;
@@ -744,50 +832,106 @@
 	padding: $sidebar-padding;
 	box-sizing: border-box;
 	pointer-events: none;
-}
 
-#search > * {
-	pointer-events: auto;
-}
+	> * {
+		pointer-events: auto;
+	}
 
-#search input[type=text] {
-	background: $pop-back;
-	position: absolute;
-	height: 30px;
-	padding: 0 $sidebar-padding;
-	border: none;
-	border-radius: 3px;
-	outline: none;
-	z-index: 1000;
-	width: $sidebar-inner-width;
-}
+	input[type=text] {
+		background: $pop-back;
+		position: absolute;
+		width: $sidebar-inner-width;
+		height: 30px;
+		padding: 0 8px;
+		border: none;
+		border-radius: 3px;
+		outline: none;
+		transition: padding 300ms;
+		z-index: 1000;
 
-#search input[type=submit] {
-	position: absolute;
-	top: 18px;
-	right: 20px;
-	box-shadow: none;
-	padding: 0;
-	z-index: 1000;
+		&:focus {
+			padding-left: 8px;
+		}
+
+		@include placeholder("&"){
+			transition: color 300ms;
+		};
+
+		@include placeholder("&:focus"){
+			color: transparent;
+		};
+	}
+
+	input[type=submit] {
+		position: absolute;
+		top: 18px;
+		right: 20px;
+		box-shadow: none;
+		padding: 0;
+		transition: opacity 300ms;
+		z-index: 1000;
+	}
+
+	input:placeholder-shown {
+		padding-left: calc(50% - 35px);
+	}
+
+	input:placeholder-shown + input[type=submit] {
+		opacity: 0;
+		pointer-events: none;
+	}
 }
 
 #searchexpando {
 	position: absolute;
 	width: $sidebar-inner-width;
 	box-sizing: border-box;
-	z-index: 100;
 	top: 40px;
 	border: none;
-	background: white;
-	box-shadow: 0 0 1000px 600px transparent;
-	transition: box-shadow 300ms;
+	padding: 10px !important;
+	background: $pop-back !important;
+	transition: opacity 100ms;
+	transition-delay: 400ms;
+	box-shadow: $modal-shadow;
 	z-index: 900;
+	
+	&:before {
+		display: none;
+	}
+}
+
+#search input:not(:focus) ~ #searchexpando,
+#search input:focus ~ #searchexpando:not([style*="block"])[style*="hidden"] {
+	animation: fade-out 300ms forwards 1;
 }
 
 #search input:focus ~ #searchexpando,
-#searchexpando[style*="block"]:not([style*="hidden"]) {
-	transition-delay: 20ms;
-	box-shadow: 0 0 1000px 600px $modal-shadow-back;
+#search input:not(:focus) ~ #searchexpando[style*="block"]:not([style*="hidden"]) {
+	animation: fade-in 300ms forwards 1;
+}
+
+#moresearchinfo {
+	border-top-color: $body-back;
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fade-out {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
 }
 
 #searchexpando {
@@ -819,7 +963,12 @@
 	border: none;
 	margin: $sidebar-padding;
 	text-transform: uppercase;
+	background: transparent;
 	height: 35px;
+
+	&:hover {
+		background: transparent;
+	}
 
 	a {
 		position: relative;
@@ -828,7 +977,7 @@
 		height: 35px;
 		line-height: 37px;
 		letter-spacing: 0.01em;
-		font-size: 90%;
+		font-size: 13.5px;
 		text-indent: -20px;
 		border-radius: $master-border-radius;
 		box-shadow: inset 0 -2px rgba(0,0,0,0.1);
@@ -879,6 +1028,20 @@
 	border: none !important;
 	padding: 0 !important;
 	overflow: hidden;
+	opacity: 1;
+
+	ul {
+		width: 100%;
+		max-width: 100%;
+
+		li {
+			padding: 2px 8px !important;
+			
+			&:hover {
+				background: $pop-back;
+			}
+		}
+	}
 
 	h2 {
 		background: $pop-back;
@@ -909,15 +1072,30 @@
 			border: 10px solid white !important;
 			border-left-width: 15px !important;
 			border-right-width: 15px !important;
-			background: white;
+			background: $card-back;
 		}
 
 		img {
 			opacity: 0;
 		}
 	}
+
+	form {
+		padding: 8px 0;
+		border-top: none;
+		background: $pop-back;
+	}
+}
+
+.flairoptionpane {
+	padding: 10px 0;
+	max-width: 100%;
 }
 
 .sidecontentbox .collapse-button {
 	display: none;
+}
+
+#rem-login-main {
+	position: relative;
 }

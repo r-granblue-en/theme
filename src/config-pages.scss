@@ -1,0 +1,354 @@
+@import "./utils.scss";
+
+.stylesheet-customize-container,
+.create-reddit,
+.subreddit-rules-page,
+.messages-page .content[role=main],
+.usertable,
+.wiki-page-content,
+.flair-settings,
+.wiki-page .wiki-page-content {
+	background: $card-back;
+	padding: 15px;
+	border-radius: 0 $master-border-radius $master-border-radius $master-border-radius;
+}
+
+.stylesheet-customize-container > form > h2,
+.create-reddit:before,
+.wiki-page-content > .md:first-child > h1,
+.flair-settings h1:before {
+	position: absolute;
+	top: -35px;
+	left: 0;
+	background: $card-back;
+	color: $highlight-col;
+	margin-top: 0;
+	height: 35px;
+	line-height: 35px;
+	padding: 0 15px;
+	font-size: 12px;
+	font-weight: bold;
+	border: none;
+	border-top: 2px solid $secondary-highlight-col;
+	border-radius: $master-border-radius $master-border-radius 0 0;
+	cursor: default;
+}
+
+.roundfield,
+.linefield {
+	.title {
+		color: inherit;
+	}
+}
+
+.linefield .title {
+	padding: 0 5px;
+}
+
+// Style page
+.stylesheet-customize-container {
+	padding: 10px;
+}
+
+#subreddit_stylesheet,
+#images > * {
+	margin: 5px;
+}
+
+.sheets {
+	margin: 0;
+
+	.col > div {
+		margin: 0;
+	}
+
+	.buttons,
+	.mod-toolbox.mod-syntax & .buttons {
+		margin: 0;
+	}
+
+	.mod-toolbox.mod-syntax & .buttons .error {
+		margin-left: 0;
+	}
+}
+
+#preview-table > h2 {
+	margin-left: 5px;
+}
+
+#theme_selector {
+	margin: 0 0 8px 0;
+}
+
+.CodeMirror {
+	border-radius: $master-border-radius;
+}
+
+.mod-toolbox.mod-syntax #tb-syntax-buttons {
+	margin: 0;
+	font-size: 0;
+
+	a + a {
+		margin-left: 6px;
+	}
+}
+
+label[for="reason"] {
+	margin: 10px 10px 8px 0;
+	display: inline-block;
+}
+
+#images {
+	margin-top: 10px;
+}
+
+label[for="file"],
+label[for="file"] + br,
+label[for="img_type"] {
+	display: none;
+}
+
+.delete_sr_img-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	.togglebutton {
+		display: block;
+		padding: 5px 7px;
+	}
+}
+
+ul.image-preview-list {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	float: left;
+	margin: 10px 0 0 !important;
+
+	li {
+		flex-basis: 18%;
+		max-width: 20%;
+		flex-grow: 1;
+		height: auto;
+		text-align: center;
+		padding-top: 15px;
+		margin: 5px;
+		border-radius: $master-border-radius;
+		background: $pop-back-slightly-lighter;
+
+		.preview {
+			display: inline-block;
+			float: none;
+			width: 70%;
+			height: 100px;
+			min-width: 100px;
+			line-height: 135px;
+			vertical-align: middle;
+
+			img {
+				max-width: 100%;
+				min-width: 50px;
+				max-height: 100px;
+				border-radius: $master-border-radius;
+			}
+		}
+
+		.description {
+			margin: 10px 0 0;
+		}
+	}
+}
+
+#image-upload ~ .error {
+	float: left;
+	margin: 10px 5px 0;
+}
+
+// Settings page
+.create-reddit:before {
+	content: $subreddit-settings;
+}
+
+.pretty-form input[type=text],
+.pretty-form input[type=file],
+.pretty-form input[type=password],
+.pretty-form input[type=number],
+.pretty-form select, .pretty-form b, .pretty-form textarea, .pretty-form button {
+	margin: 0;
+}
+
+.fancy-settings,
+.modtools-page .content {
+	textarea,
+	input[type="text"] {
+		display: block;
+		width: 100% !important;
+
+		&:focus {
+			border-color: $pop-back-darker;
+		}
+	}
+}
+
+// Rules page
+.subreddit-rules-page {
+	max-width: 100%;
+}
+
+.c-form-control {
+	padding: 6px;
+}
+
+.subreddit-rules-page:before {
+	display: none;
+}
+
+.modtools-page > div.content {
+	position: relative;
+	margin: 0 $side-gap;
+	margin-right: $sidebar-width + $side-gap + $sidebar-main-gap;
+	padding: 0;
+}
+
+.c-form-group .md,
+.modtools-page .label {
+	margin-bottom: 5px;
+}
+
+.subreddit-rule-form .c-form-group .label {
+	color: $pop-col;
+}
+
+.modtools-page .form-buttons button {
+	box-shadow: none;
+	margin: 5px 0 0;
+}
+
+.subreddit-rule-form .c-form-group {
+	margin-bottom: 0;
+}
+
+.c-form-group + .c-form-group {
+	margin-top: 15px;
+}
+
+// Approved submitter page
+/*.usertable {
+	margin: -14px 0 0;
+}
+
+// Traffic stats page
+.wiki-page-content {
+	padding-bottom: 5px;
+}
+
+#charts,
+.traffic-tables-side,
+.traffic-tables {
+	background: $card-back;
+	border-radius: $master-border-radius;
+	margin-top: $mini-gap;
+	min-height: 0;
+}
+
+#charts {
+	padding: 15px 0;
+}
+
+#charts > div {
+	text-align: center;
+}
+
+div.timeseries {
+	border: none;
+	margin: 0;
+}
+
+.traffic-tables {
+	float: left;
+	margin-left: $mini-gap;
+}
+
+.traffic-table tbody tr:nth-child(even) {
+	background: $pop-back-mod;
+}*/
+
+// Flair page
+.tabpane-content {
+	padding: 0;
+	border: none;
+}
+
+.flair-settings {
+	margin-bottom: $mini-gap - 5px;
+}
+
+.flair-settings h1 {
+	font-size: 0;
+	margin: 0;
+
+	&:before {
+		content: $flair-settings;
+	}
+}
+
+.flair-settings + .tabmenu {
+	position: relative;
+	left: 0;
+}
+
+.flairlist {
+	margin-top: 0;
+}
+
+.flairgrant .linefield {
+	background: $card-back;
+	margin: 0;
+}
+
+.flair-jump button {
+	font-size: $btn-font-size;
+	margin-top: 5px;
+}
+
+// AutoModerator pages
+.wiki-page-config-automoderator {
+	.reddit-infobar {
+		margin: 0;
+		box-shadow: none;
+		border-top-left-radius: 0;
+		background: white;
+		padding: 15px;
+	}
+
+	.wiki-page-content {
+		margin: 0;
+	}
+
+	.wikititle {
+		display: none;
+	}
+
+	.pageactions {
+		margin-top: $mini-gap !important;
+	}
+
+	.wiki-page-content {
+		padding-bottom: 15px;
+	}
+}
+
+.moderator-table tr,
+.contributor-table tr,
+.wikirevisionlisting .generic-table tr,
+.modactionlisting .generic-table tr {
+	&:nth-child(2n) {
+		background: $pop-back !important;
+	}
+
+	&:hover,
+	&:nth-child(2n):hover {
+		background: $pop-back-mod !important;
+	}
+}

@@ -1,5 +1,10 @@
 @import "./utils.scss";
 
+// Remove stuff
+.RESSubscriptionButton .res-icon {
+	display: none !important;
+}
+
 // header area
 #srList {
 	background: white;
@@ -66,6 +71,7 @@
 
 #RESShortcutsSort {
 	right: 53px;
+	margin-top: 2px;
 }
 
 #RESShortcutsLeft {
@@ -79,33 +85,36 @@
 
 #sort-menu {
 	border: none;
-	margin-top: 0;
-	margin-left: 4px;
+	margin-top: 2px !important;
+	margin-left: 2px;
 	font-size: 12px;
 	border-radius: 0 0 $master-border-radius $master-border-radius;
 	box-shadow: $modal-drop-shadow;
+	padding-top: 0 !important;
+	max-height: 150px;
+	opacity: 1;
 	z-index: 10000;
 
-	&:before {
+	/*&:before {
 		content: "↑↓";
-		display: block;
 		position: absolute;
 		right: 0;
 		top: -22px;
 		width: 22px;
 		height: 22px;
-		background: $pop-back-mod;
+		background: $pop-back;
 		font-size: 12px;
 		text-align: center;
-		line-height: 23px;
+		line-height: 22px;
 		pointer-events: none;
-	}
+	}*/
 
 	p {
-		background: $pop-back-mod;
+		background: $pop-back;
 		color: $pop-col;
 		font-size: 0;
 		padding: 4px 9px;
+		font-weight: bold;
 	}
 
 	p:before {
@@ -118,14 +127,62 @@
 	position: absolute;
 	width: 30px !important;
 	height: 30px !important;
-	right: -40px;
+	right: -45px;
 	top: 0;
-	background: rgba(255,255,255,0.7);
-	background-image: none !important;
+}
+
+#RESAccountSwitcherIconOverlay {
+	width: 30px !important;
+	height: 35px !important;
+	opacity: 0;
+	z-index: 10001 !important;
+}
+
+#RESAccountSwitcherDropdown {
+	padding: 0;
+	left: auto !important;
+	right: 5 * 35px + $side-gap + 34px;
+	margin-top: 17px !important;
+	border-top-left-radius: 0;
+	transform: translateX(100%);
+	overflow: visible;
+	z-index: 10000;
+
+	&:before,
+	&:after {
+		content: "";
+		position: absolute;
+		width: 38px;
+		height: 35px;
+		left: 0;
+		top: -35px;
+		background-color: inherit;
+		border-radius: $master-border-radius $master-border-radius 0 0;
+		box-shadow: $modal-drop-shadow;
+	}
+
+	&:after {
+		box-shadow: none;
+		width: 30px;
+		margin-left: 4px;
+	}
+
+	li {
+		background: inherit;
+		padding: 0 8px;
+		border-bottom: none;
+		border-radius: inherit;
+		height: 24px;
+		line-height: 26px;
+	}
+
+	.linkIcon {
+		margin: 3px 0 0 10px;
+	}
 }
 
 .res .user {
-	margin-right: 40px;
+	margin-right: 45px;
 }
 
 #RESSettingsButton:after {
@@ -141,7 +198,7 @@
 	font-size: 11px;
 	font-family: inherit;
 	font-weight: bold;
-	color: $header-menu-col;
+	color: inherit;
 }
 
 #res-trash-overlay {
@@ -162,7 +219,7 @@
 	border: none;
 	color: $pop-col-lighter;
 	background: $pop-back-mod;
-	border-radius: 2px;
+	border-radius: $small-border-radius;
 	padding: 15px;
 
 	&.srOver {
@@ -174,7 +231,7 @@
 
 #RESSubredditGroupDropdown {
 	display: block;
-	background: white;
+	background: $card-back;
 	border: none;
 	border-radius: 0 0 $master-border-radius $master-border-radius;
 	box-shadow: $modal-drop-shadow;
@@ -187,11 +244,11 @@
 
 	ul a {
 		padding: 3px 10px;
-		color: $header-menu-col;
+		color: $menu-col;
 	}
 
 	ul a:hover {
-		background: $pop-back-mod;
+		background: $pop-back;
 	}
 
 	.RESShortcutsEditButtons {
@@ -207,12 +264,12 @@
 #editShortcutDialog,
 #RESShortcutsAddFormContainer,
 .RESDropdownList {
-	background: white;
-	color: $pop-col;
-	border-radius: $master-border-radius;
+	@include dropdown;
 	padding: 8px;
-	border: none;
-	z-index: 10000;
+
+	li {
+		border: none;
+	}
 
 	button,
 	input[type="submit"] {
@@ -224,19 +281,33 @@
 	label {
 		text-transform: lowercase;
 		color: $pop-col-lighter;
+		line-height: 25px;
+		padding: 0;
 	}
 
 	input[type="text"] {
 		background: $pop-back;
-		border: none;
-		padding: 0 6px;
+		border: 1px solid $pop-back-slightly-darker;
+		padding: 0 2px;
 		height: 25px;
+
+		&:focus {
+			border-color: $pop-back-darker;
+		}
 	}
 
 	h3, strong {
 		font-weight: bold;
 		font-size: 13px;
 	}
+}
+
+.RESDropdownList {
+	padding: 0;
+}
+
+#shortcut-subreddit {
+	border-radius: $small-border-radius 0 0 $small-border-radius;
 }
 
 #editShortcutDialog,
@@ -262,7 +333,7 @@
 		height: 100%;
 		top: 0;
 		left: 0;
-		background: white;
+		background: $card-back;
 		border-radius: inherit;
 		box-shadow: inset 0 -41px 0 $pop-back, $modal-drop-shadow;
 		z-index: -1;
@@ -272,7 +343,8 @@
 #editShortcutDialog #sortButton {	// egads
 	border: none !important;
 	padding: 0 !important;
-	background: $pop-back-mod !important;
+	background: $pop-back-slightly-darker !important;
+	color: $pop-col !important;
 	line-height: 25px;
 	font-size: 90% !important;
 	border-radius: 0 $master-border-radius $master-border-radius 0;
@@ -282,9 +354,40 @@
 	margin-top: 5px;
 }
 
-#shortcut-delete {
+.RESDescription,
+.res-shortcuts-add-tip {
+	color: inherit !important;
+}
+
+#shortcut-delete,
+.res-filterline-filter-hover-button[action="clear"] {
 	background: $alert-col-mild !important;
 	color: white !important;
+	margin: 0;
+}
+
+.RESHoverTitle .res-filterline-filter-hover-button {
+	padding: 3px 10px;
+	margin: -1px 3px;
+}
+
+.builderItem {
+	border: none;
+	border-radius: $master-border-radius;
+	background: $pop-back;
+}
+
+.checkset label {
+	border-color: $pop-back-slightly-darker;
+}
+
+.checkset :checked + label {
+	background: $pop-back-slightly-darker;
+	text-decoration: none;
+}
+
+.res-filterline-filter-hover-group {
+	margin-top: 10px;
 }
 
 #RESShortcutsAddFormContainer {
@@ -314,42 +417,39 @@
 }
 
 .RESCloseButton {
-	background: $pop-back;
+	background: transparent;
+	color: $pop-col-lighter;
 	border: none;
+	font-size: 110%;
 	font-weight: bold;
 	line-height: 24px;
+	margin: 0;
 	z-index: 0;
 
 	&:hover {
-		background: $pop-back-mod;
+		background: transparent;
 	}
-}
 
-.RESDropdownList,
-.RESDropdownList li:last-child  {
-	background: $pop-back;
-	border: none;
-}
-
-.RESDropdownList li {
-	border-color: rgba(150,150,150,0.1);
-	color: $header-menu-col;
-}
-
-.RESDropdownList li:hover,
-.RESDropdownList a:hover {
-	background: $pop-back-mod;
+	#editShortcutDialog & {
+		margin: -4px;
+	}
 }
 
 // Main content
-body.listing-page #siteTable .thing.res-selected {
+body.listing-page .thing.link.res-selected {
 	.parent:before {
-		box-shadow: 0 0 0 800px $pop-back;
+		@include sub-node-disc($pop-back-slightly-lighter);
 	}
 
 	.entry {
-		background: $pop-back !important;
+		background: $pop-back-slightly-lighter !important;
+		border-right: 3px solid $highlight-col;
 	}
+}
+
+body.comments-page .thing.link.res-selected .entry {
+	background: $card-back !important;
+	border-right: 3px solid $highlight-col;
 }
 
 #sr-header-area a.RESShortcutsCurrentSub,
@@ -376,8 +476,8 @@ body.listing-page #siteTable .thing.res-selected {
 	}
 }
 
-.RESNotificationHeader {
-	--background: $pop-back;
+.RESNotificationClose.RESCloseButton {
+	color: white;
 }
 
 .RESNotificationContent {
@@ -387,4 +487,401 @@ body.listing-page #siteTable .thing.res-selected {
 .RESNotificationFooter {
 	background: $pop-back;
 	border: none;
+}
+
+.res-filterline {
+	padding: 5px 7px;
+	background: $pop-back;
+	margin-top: -10px;
+	margin-bottom: 4px;
+	border: 1px solid $body-back;
+	border-left: none;
+	border-right: none;
+	border-radius: 0 0 0 $master-border-radius;
+	z-index: 10000;
+}
+
+.comments-page .res-filterline {
+	margin: 0 10px 10px;
+	border: none;
+	border-radius: $master-border-radius;
+	// background:
+	color: $pop-col;
+}
+
+input.res-filterline-toggle-powered {
+	margin: 0 !important;
+}
+
+.res-filterline-preamble {
+	margin-right: 4px;
+
+	+ * {
+		transition: opacity 300ms;
+	}
+
+	&:hover + * {
+		opacity: 0;
+		z-index: -100;
+	}
+}
+
+.res-filterline-preamble:hover .res-filterline-dropdown {
+	max-height: 1000px;
+}
+
+.res-filterline-filter {
+	border: none;
+	margin-right: 5px;
+}
+
+.res-filterline-external-filter {
+	margin-left: 16px;
+}
+
+.res-filterline-dropdown-action {
+	margin-right: 3px;
+}
+
+.res-filterline-filter-new {
+	margin-left: 29px;
+}
+
+.res-filterline-dropdown details summary {
+	margin-bottom: 2px;
+}
+
+.res-filterline-dropdown-action {
+	opacity: 0.7;
+
+	&:hover {
+		border-color: transparent;
+		opacity: 1;
+	}
+}
+
+.res-filter-remove-entry {
+	position: relative;
+}
+
+.RESCharCounter {
+	font-size: 12px !important;
+	line-height: 25px;
+	color: $pop-col-lighter !important;
+}
+
+.markdownEditor-wrapper {
+	width: 100%;
+}
+
+.content button.RESBigEditorPop {
+	margin: 0;
+	margin-left: 10px !important;
+}
+
+.RESDialogSmall {
+	background: white !important;
+	border: none;
+
+	h3 {
+		background: $pop-back;
+		font-weight: bold;
+		color: $pop-col;
+		border: none;
+		border-radius: $master-border-radius $master-border-radius 0 0;
+		padding-top: 10px;
+	}
+}
+
+.RESHover {
+	box-shadow: $modal-drop-shadow;
+}
+
+.markhelp + .livePreview,
+.md + .livePreview {
+	margin-top: 8px;
+	margin-bottom: 0;
+}
+
+.res #BigEditor {
+	margin-bottom: 0 !important;
+}
+
+.edit-btn {
+	border-color: $pop-back-slightly-darker !important;
+	border-radius: $small-border-radius;
+}
+
+.res-commentBoxes .comment {
+	overflow: visible !important;
+	border-left: none !important;
+	border-top: none !important;
+	border-bottom: none !important;
+	margin-bottom: 8px !important;
+	padding-bottom: 4px !important;
+	border-right: 3px solid transparent !important;
+}
+
+.res-commentBoxes.res-commentBoxes-rounded .comment {
+	border-radius: $small-border-radius !important;
+}
+
+.res-commentBoxes .comment .comment {
+	margin-left: 0 !important;
+}
+
+.res-commentBoxes .comment .comment,
+.res-commentBoxes .comment .comment .comment .comment,
+.res-commentBoxes .comment .comment .comment .comment .comment .comment,
+.res-commentBoxes .comment .comment .comment .comment .comment .comment .comment .comment,
+.res-commentBoxes .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment {
+	background-color: $card-back !important;
+}
+
+.res-commentBoxes .comment .comment .comment,
+.res-commentBoxes .comment .comment .comment .comment .comment,
+.res-commentBoxes .comment .comment .comment .comment .comment .comment .comment,
+.res-commentBoxes .comment .comment .comment .comment .comment .comment .comment .comment .comment {
+	background-color: $pop-back-vv-slightly-darker !important;
+}
+
+.res-commentBoxes .comment.spam {
+	background-image: linear-gradient($spam-overlay, $spam-overlay) !important;
+	border-color: $alert-col !important;
+}
+
+.comment .entry.res-selected,
+.comment .entry.res-selected .md-container,
+.entry.res-selected .md-container {
+	background: transparent !important;
+}
+
+.thing:not(.comment) .entry.res-selected {
+	background: $card-back !important;
+}
+
+.RES-save {
+	cursor: pointer;
+}
+
+#RESStyleSheetTipPane {
+	width: 100%;
+	border: none;
+	color: $pop-col;
+}
+
+#RESStyleSheetTipPane-header {
+	background: $pop-back-mod;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 1;
+	border: none;
+	border-radius: $master-border-radius $master-border-radius 0 0;
+
+	&.minimized {
+		border-radius: $master-border-radius;
+	}
+
+	.details {
+		font-weight: normal;
+		vertical-align: 1px;
+	}
+}
+
+#RESStyleSheetTipPane-close {
+	margin: -2px;
+}
+
+#RESStyleSheetTipPane-contents {
+	background: $pop-back;
+	padding: 5px 20px;
+	border-radius: 0 0 $master-border-radius $master-border-radius;
+}
+
+.RESDialogSmall .RESCloseButton {
+	margin: 0;
+}
+
+.res-filterline-dropdown-toggles {
+	text-align: center;
+	margin: 5px 10px 0;
+	border-top: 1px solid $body-back;
+	padding-top: 3px;
+}
+
+.res-filterline-show-help {
+	margin-bottom: 5px;
+}
+
+.RESHoverInfoCard {
+	&:before {
+		border-color: transparent $pop-back-slightly-darker;
+		margin: 1px;
+		z-index: -1;
+	}
+
+	&:after {
+		border-color: transparent $pop-back;
+	}
+}
+
+.RESDialogSmall .RESHoverBody.RESDialogContents {
+	padding: 0;
+}
+
+#authorInfoToolTip,
+#userTaggerToolTip,
+.res-filterline-filter-hover {
+	padding: 0 10px 10px;
+}
+
+.RESHoverTitle .fancy-toggle-button a.active {
+	display: inline-block;
+	line-height: 26px;
+	margin-top: -5px;
+}
+
+.RESHoverTitle .fancy-toggle-button a.remove {
+	background: $alert-col-mild;
+	color: white;
+}
+
+.fieldPair:not([hidden]) {
+	margin-bottom: 8px;
+	color: $pop-col;
+}
+
+.blueButton {
+	display: inline-block;
+	background-color: #107ac4;
+	color: white;
+	line-height: 28px;
+	padding: 0 14px;
+}
+
+#userTaggerSave,
+#quickMessageDialogSend {
+	color: $main-back-overlay-col !important;
+	background: $main-back !important;
+	border: none !important;
+	padding: 5px 14px !important;
+	font-weight: bold;
+}
+
+#quickMessageDialog select {
+	width: calc(100% - 78px);
+	text-indent: 0.25em;
+}
+
+#quickMessageDialog .clear {
+	margin-bottom: 8px;
+	padding-bottom: 8px;
+}
+
+.guider {
+	background: $card-back;
+	box-shadow: $modal-drop-shadow;
+	border: none;
+}
+
+.guiders_x_button {
+	font-weight: bold;
+}
+
+.guiders_arrow {
+	background: none;
+
+	&:before,
+	&:after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		margin-left: -20px;
+		border: 20px solid transparent;
+		border-bottom-color: $card-back;
+		border-bottom-width: 30px;
+	}
+
+	&:before {
+		border-bottom-color: $pop-back-slightly-darker;
+		margin-left: -19px;
+	}
+}
+
+.NERPageMarker {
+	width: 100%;
+	background: $card-back;
+	border-radius: $master-border-radius;
+	border: none;
+	font-size: 12px;
+	padding-top: 4px;
+	margin: 8px 0 12px 0;
+	color: $pop-col-lighter;
+	letter-spacing: 0.04em;
+	line-height: 20px;
+
+	&:not(.NERPageMarkerLast) {
+		text-transform: uppercase;
+	}
+
+	a {
+		font-size: $btn-font-size;
+	}
+
+	.nextprev a + a {
+		margin-left: 6px;
+	}
+}
+
+.NERPageMarkerLast {
+	position: absolute;
+	margin-top: 10px;
+}
+
+#progressIndicator {
+	background: $card-back;
+	border-radius: $master-border-radius;
+	border: none;
+	margin-top: 8px;
+}
+
+.RESMacroWrappingSpan {
+	position: relative;
+	z-index: 100;
+}
+
+.RESMacroDropdownTitle {
+	background: transparent !important;
+}
+
+.RESMacroDropdown {
+	top: 13px !important;
+	left: auto !important;
+	right: -$dropdown-padding-lr;
+}
+
+.RESMacroWrappingSpan .openMacro + span {
+	max-height: 500px;
+}
+
+.RESMacroDropdownList li {
+	position: relative;
+	list-style: none;
+
+	a {
+		font-size: 11px;
+	}
+}
+
+.RES-dropdown-button {
+	opacity: 1 !important;
+	color: $highlight-col;
+	font-size: 0;
+
+	&:after {
+		content: $temporarily;
+		font-size: 11px;
+		margin-left: 10px;
+	}
 }

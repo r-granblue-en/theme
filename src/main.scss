@@ -1,20 +1,68 @@
 @import "./utils.scss";
+@import "./hacky-nightmode-settings.scss";
 
 .content[role="main"] {
 	position: relative;
-	margin: 0 20px;
-	margin-right: $sidebar-width + 35px;
+	margin: 0 $side-gap;
+	margin-right: $sidebar-width + $side-gap + $sidebar-main-gap;
+	background: transparent;
+	color: $pop-col-lighter;
 	padding: 0;
-	border-top: 14px solid $card-back;
-	border-top-right-radius: 3px;
 	z-index: 1000;
+
+	> .menuarea {
+		position: relative;
+		background: $card-back;
+		margin: 0 0 4px;
+		padding: 3px 0 9px 15px;
+		border-radius: 0 0 0 3px;
+		z-index: 1000;
+		overflow: visible;
+		border: none;
+		border-bottom: 1px solid $body-back;
+	}
+
+	.listing-page & {
+		border-top: 8px solid $card-back;
+		border-top-right-radius: 3px;
+
+		&:after {
+			content: "";
+			position: relative;
+			display: block;
+			width: 100%;
+			height: 3px;
+			background: $card-back;
+			margin-top: -1px;
+			border-radius: 0 0 $master-border-radius $master-border-radius;
+		}
+	}
 
 	&:hover {
 		z-index: 1002;
 	}
 }
 
-#siteTable > .link:first-child {
+body.comments-page {
+	.content[role="main"] {
+		border-top: none;
+	}
+
+	#siteTable > .link:first-child {
+		margin-top: 0;
+	}
+
+	.link .parent {
+		border-radius: 0;
+	}
+
+	.link input + .parent {
+		border-radius: $master-border-radius 0 0 $master-border-radius;
+	}
+}
+
+#siteTable > .link:first-child,
+#siteTable > .clearleft:first-child + .clearleft + .link {
 	margin-top: -4px;
 }
 
@@ -36,13 +84,13 @@
 		&:before {
 			content: "";
 			position: absolute;
-			width: 22px;
-			height: 22px;
+			width: 24px;
+			height: 24px;
 			border-radius: 50%;
 			top: 50%;
-			left: -12px;
-			margin-top: -11px;
-			box-shadow: 0 0 0 500px $card-back;
+			left: -13px;
+			margin-top: -12px;
+			@include sub-node-disc($card-back);
 		}
 	}
 
@@ -54,13 +102,39 @@
 		height: 18px;
 		line-height: 18px;
 		font-size: 9px;
-		margin-top: -9px;
+		margin-top: -9px !important;
 		margin-right: -8px;
-		color: $pop-col-lighter;
 		background: $card-back;
+		color: inherit;
 		text-align: center;
 		border-radius: 50%;
 		cursor: default;
+		overflow: visible;
+		z-index: 10000;
+
+		&:hover {
+			animation: rank-reveal 0ms forwards 1;
+			animation-delay: 250ms;
+
+			&:after {
+				content: "";
+				position: absolute;
+				width: 100%;
+				height: 200%;
+				top: 0;
+				left: 0;
+			}
+		}
+
+		&:before {
+			transition: transform 250ms;
+		}
+
+		&:hover:before {
+			transform: scale(3);
+			animation: rank-reveal-circle 250ms forwards 1;
+			animation-delay: 250ms;
+		}
 	}
 
 	&.stickied .rank:before {
@@ -74,33 +148,54 @@
 		margin-right: 0 !important;
 		overflow: visible;
 		color: $pop-col-lighter;
+		border-right: 3px solid transparent;
 
 		.buttons li a {
 			color: $pop-col-lighter;
 		}
 	}
+
+	&.last-clicked {
+		border: none;
+		overflow: visible;
+	}
+
+	.flat-list a {
+		color: $pop-col-lighter;
+		opacity: 0.7;
+
+		&:hover {
+			opacity: 1;
+			text-decoration: none;
+		}
+	}
+}
+
+.single-page .link .rank {
+	display: block;
+}
+
+.midcol {
+	position: relative;
+	z-index: 100;
 }
 
 .link .midcol {
 	position: relative;
-	width: 40px !important;
-	margin: 0;
-	margin-left: 15px;
-	margin-right: 10px;
+	width: 35px !important;
+	margin: 5px 10px -5px 18px;
 	z-index: 10;
+
+	.link + & {
+		margin-top: 0;
+	}
 }
 
 .arrow {
-	width: 15px;
-	height: 20px;
+	width: 18px;
+	height: 18px;
 	margin-top: 0;
 	margin-bottom: 0;
-	background: #eee;
-	background-image: none !important;
-}
-
-.arrow.up {
-	margin-top: 5px;
 }
 
 .arrow.down {
@@ -112,11 +207,19 @@
 	line-height: 15px;
 }
 
+.top-matter {
+	margin-right: 6px;
+}
+
 .domain {
 	float: right;
 	font-size: 0;
+	z-index: -1;
 
 	a {
+		position: absolute;
+		right: 9px;
+		top: 6px;
 		font-size: 11px;
 		color: $pop-col;
 		opacity: 0.4;
@@ -128,31 +231,46 @@
 	}
 }
 
+body.moderator .domain a {
+	margin-right: 20px;
+}
+
+body.mod-toolbox .domain a {
+	padding-right: 20px;
+}
+
 .thing .title {
 	color: $highlight-col;
+	margin: 0;
+	overflow: visible;
 }
 
 .thing.visited .title,
 .thing .title:visited,
 .thing.visited .source-url {
-	color: $pop-col-hued;
+	color: $pop-col-lighter;
 }
 
-.linklisting > .clearleft:last-child,
-.nav-buttons {
+.expando-button {
 	position: relative;
+	background: $pop-back-slightly-darker !important;
+	margin: 4px 6px 0 0;
+	border-radius: 3px;
+	z-index: 400;
+}
 
-	&:before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 10px;
-		background: $card-back;
-		border-radius: 0 0 $master-border-radius $master-border-radius;
-		margin-top: -2px;
-	}
+.expando {
+	margin-top: 8px;
+	margin-bottom: 2px;
+}
+
+.link .usertext-body .md {
+	background: $card-back;
+	border: 1px solid $pop-back-slightly-darker;
+	border-radius: $master-border-radius;
+	margin: auto;
+	// margin-left: 45px;
+	margin-right: 6px;
 }
 
 .nav-buttons {
@@ -161,14 +279,27 @@
 	font-size: 0;
 }
 
+.listing-page .nav-buttons {
+	position: absolute;
+	width: 100%;
+	bottom: -60px;
+	left: 0;
+}
+
+.nextprev,
+.next-suggestions {
+	font-size: 0;
+}
+
 .nextprev a,
 .next-suggestions a {
 	display: inline-block;
 	position: relative;
 	@include standard-btn;
-	height: 28px;
+	font-size: 0;
+	height: 25px;
 	padding: 0 15px;
-	line-height: 26px;
+	line-height: 25px;
 	background: $highlight-col;
 	color: white;
 
@@ -181,7 +312,8 @@
 .nextprev a:after {
 	content: "";
 	position: absolute;
-	top: 9px;
+	top: 7px;
+	transform: translateY(0.5px);
 	border: 5px solid transparent;
 	border-left-width: 7px;
 	border-right-width: 7px;
@@ -220,6 +352,59 @@
 		&:after {
 			border-left-color: white;
 			right: 3px;
+		}
+	}
+}
+
+#noresults {
+	background: $card-back;
+	padding: 40px;
+	padding-top: 30px;
+	box-sizing: border-box;
+	text-align: center;
+	width: 100%;
+	border-radius: 0 0 3px 3px;
+	font-weight: normal;
+	color: $soft-col;
+
+	&:before {
+		background: $soft-col-lighter;
+	}
+}
+
+.link .flat-list {
+	padding: 0;
+}
+
+@keyframes rank-reveal {
+	to {
+		color: inherit;
+		background: $card-back;
+	}
+}
+
+@keyframes rank-reveal-circle {
+	to {
+		opacity: 0;
+	}
+}
+
+@include if-nm {
+	body.res-nightmode,
+	:lang(nm) {
+		.rank {
+			background: $card-back-nm;
+
+			&:hover {
+				animation-name: rank-reveal-nm;
+			}
+		}
+	}
+
+	@keyframes rank-reveal-nm {
+		to {
+			color: inherit;
+			background: $card-back-nm;
 		}
 	}
 }
