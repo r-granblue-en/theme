@@ -6,7 +6,9 @@
   "scripts": {
     "build": "npm run clean && sass src/style.scss dist/style.css",
     "clean": "rm -rf dist",
-    "watch": "sass --watch src/style.scss:src/output.css"
+    "dev": "npm run watch | npm run server",
+    "server": "serve -s",
+    "watch": "sass --watch src/style.scss:src/style.css"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
   "homepage": "https://github.com/r-granblue-en/theme",
   "dependencies": {
     "express": "^4.16.3",
-    "sass": "^1.15.2"
+    "sass": "^1.15.2",
+    "serve": "^10.1.1"
   }
 }
