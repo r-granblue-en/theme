@@ -15,38 +15,42 @@
         transform: translate(-50%, -50%);
       }
 
-      .button {
+      a {
         width: 50%;
         background: #FF8F00;
         display: inline-block;
         box-sizing: border-box;
         padding: 10px;
 
+        font-size: 0;
         color: #F0F0DF;
         line-height: 2;
         text-decoration: none;
         white-space: nowrap;
       }
 
-      a {
-        color: #F0F0DF;
-        text-decoration: none;
+      a:after {
+        content: "Save me\A༼ つ ◕_◕ ༽つ";
+        white-space: pre;
+        font-size: 1rem;
+      }
+
+      small {
+        opacity: 0.4;
       }
     </style>
   </head>
   <body>
     <div>
       <p>
-        Click the following button to install a userscript that loads the theme for local development:
+        Save the following link as bookmarklet and click it to load the stylesheet.
       </p>
       <p>
-        <a class="button" href="contrib/theme-reloader.user.js">
-          Install UserScript
-        </a>
+        <a class="button" href='javascript: {window.testStyle && testStyle.remove(); window.testStyle=document.createElement("link"); testStyle.rel="stylesheet"; testStyle.href="http://localhost:5000/src/style.css"; document.head.appendChild(testStyle);}'></a>
       </p>
       <small>
-        Requires <a href="https://tampermonkey.net/">Tampermonkey</a>. Does not work with Greasemonkey 4+.
+        In Chrome, right click and select <em>Copy Link Address</em>.
       </small>
-    </div.
+    </div>
   </body>
 </html>
