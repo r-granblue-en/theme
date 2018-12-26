@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/r-granblue-en/theme",
   "dependencies": {
-    "express": "^4.16.3",
     "sass": "^1.15.2",
     "serve": "^10.1.1"
   }
