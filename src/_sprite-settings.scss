@@ -37,7 +37,7 @@ $rect-30sq: [30,30];
 
 @mixin set-size($w,$h,$important: false){
 	$back-size: #{round($w / $downsampling)}px #{round($h / $downsampling)}px;
-	
+
 	@if ($important) {
 		background-size: $back-size !important;
 	}
@@ -50,7 +50,7 @@ $rect-30sq: [30,30];
 @mixin set-size-rel($w,$h,$important: false){
 	$back-w: round($image-width / $w / $downsampling * 100);
 	$back-h: round($image-height / $h / $downsampling * 100);
-	
+
 	@if ($important) {
 		background-size: $back-w+"%" $back-h+"%" !important;
 	}

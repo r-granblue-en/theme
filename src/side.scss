@@ -149,7 +149,7 @@ $faux-form-item-padding: 0 8px;
 		text-decoration: none;
 		font-size: inherit;
 	}
-	
+
 	* + .res-fancy-toggle-button {
 		margin-left: 5px;
 	}
@@ -699,7 +699,7 @@ $faux-form-item-padding: 0 8px;
 
 	.md > *:last-child {
 		padding-bottom: 30px !important;
-		
+
 		&:before {
 			content: "";
 			position: absolute;
@@ -894,7 +894,7 @@ $faux-form-item-padding: 0 8px;
 	transition-delay: 400ms;
 	box-shadow: $modal-shadow;
 	z-index: 900;
-	
+
 	&:before {
 		display: none;
 	}
@@ -1036,7 +1036,7 @@ $faux-form-item-padding: 0 8px;
 
 		li {
 			padding: 2px 8px !important;
-			
+
 			&:hover {
 				background: $pop-back;
 			}
