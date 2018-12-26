@@ -1,14 +1,18 @@
 {
-  "name": "tifu_css",
+  "name": "granblue_en_theme",
   "version": "1.0.0",
-  "description": "TIFU CSS and dev server for remote file accessibility",
+  "description": "/r/granblue_en/ subreddit theme and development tooling",
   "main": "server.js",
   "scripts": {
-    "test": "test"
+    "build": "npm run clean && sass src/style.scss dist/style.css",
+    "clean": "rm -rf dist",
+    "dev": "npm run watch | npm run server",
+    "server": "serve -s",
+    "watch": "sass --watch src/style.scss:src/style.css"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PicturElements/tifu_css.git"
+    "url": "git+https://github.com/r-granblue-en/theme.git"
   },
   "keywords": [
     "TIFU"
@@ -16,10 +20,12 @@
   "author": "PicturElements",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/PicturElements/tifu_css/issues"
+    "url": "https://github.com/r-granblue-en/theme/issues"
   },
-  "homepage": "https://github.com/PicturElements/tifu_css#readme",
+  "homepage": "https://github.com/r-granblue-en/theme",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "sass": "^1.15.2",
+    "serve": "^10.1.1"
   }
 }

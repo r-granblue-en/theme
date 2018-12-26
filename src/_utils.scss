@@ -2,7 +2,7 @@
 
 $version: "0.0.1";
 
-$sprite-url: "http://localhost:2005/img/sprite.png";
+$sprite-url: "http://localhost:5000/img/sprite.png";
 $header-url: "https://hips.hearstapps.com/housebeautiful.cdnds.net/16/49/1481114715-close-up-ornaments-and-string-lights-on-christmas-tree.jpg";
 // $sprite-url: "%%sprite%%";
 
@@ -234,7 +234,7 @@ $dropdown-padding-lr: 6px;
 			$out-flag: false;
 		}
 	}
-			
+
 	@if $out-flag {
 		@content;
 	}
@@ -294,7 +294,7 @@ $dropdown-padding-lr: 6px;
 		color: $menu-col;
 		font-weight: bold;
 		font-size: 11px;
-	
+
 		&:hover {
 			background: $pop-back !important;
 			text-decoration: none;
@@ -309,7 +309,7 @@ $dropdown-padding-lr: 6px;
 
 	@else {
 		box-shadow: 0 0 0 1000px $col;
-	}	
+	}
 }
 
 @mixin placeholder($selector: "&") {
