@@ -1,11 +1,27 @@
-# tifu_css
+# /r/granblue_en/ theme
 
-CSS redesign for TIFU. Style in SCSS, uses a little Express server to serve third party content, because DevTools was a bitch to serve my files on properly and because these servers are way too easy to set up ☜(ﾟヮﾟ☜)
+Reddit theme for [/r/granblue_en][1].
 
-How to use:
-1. clone repo. Alternatively, recreate text verbatim using your preferred text editor (slightly slow method)
-2. run `npm start` in the project root to run the static file server
-3. go to /r/tifu_css (or any other sub with no custom styling)
-4. add this bookmarklet: ```javascript: {window.tifuStyle&&tifuStyle.remove(); window.tifuStyle=document.createElement("link"); tifuStyle.rel="stylesheet"; tifuStyle.href="http://localhost:2005/src/output.css"; document.head.appendChild(tifuStyle)}```
-5. click that mfing bookmarklet. This adds the style to the page
-6. add project to DevTools workspace, cd into src, install and run sass, `sass --watch style.scss:output.css`, to edit the SCSS live
+Forked and based off [/r/tifu/ subreddit theme][2], [Vykort][3].
+
+### Planned Changes
+- [ ] Left-side-vertical comment collapse area
+- [ ] Vertical userflairs
+- [ ] Sidebar gallery showcase
+
+### Development Notes
+The following command will start a filesystem-watcher that (re)compiles the stylesheets when any of the source files are changed:
+
+```sh
+npm run dev
+```
+
+It additionally starts a local webserver at [http://localhost:5000][4] which will serve the compiled stylesheet for easier development and testing.
+
+The project also includes a [userscript][5] that checks and reloads the stylesheet on every interval on reddit. It can be installed via [http://localhost:5000][4].
+
+[1]: https://www.reddit.com/r/granblue_en/
+[2]: https://github.com/PicturElements/tifu_css
+[3]: https://www.reddit.com/r/vykort/
+[4]: http://localhost:5000
+[5]: https://github.com/r-granblue-en/theme/tree/master/contrib/theme-reloader.user.js
