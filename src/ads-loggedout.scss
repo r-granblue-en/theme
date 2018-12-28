@@ -124,8 +124,7 @@ body:not(.loggedin) .user {
 	font-size: 12px;
 	padding: 0 11px;
 	border-radius: $small-border-radius;
-	background: $card-back;
-	color: $pop-col;
+	color: white;
 	text-align: center;
 	box-sizing: border-box;
 	min-width: $sidebar-width - 40px;
