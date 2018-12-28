@@ -1,5 +1,7 @@
 @import "flags.scss";
 
+$thumbnail-size: 70px;
+
 @include cond-style(not $allow-user-flair) {
 	.side {
 		.flairtoggle,
@@ -12,6 +14,27 @@
 @include cond-style($block-thumbnails) {
 	.thumbnail {
 		display: none;
+	}
+}
+
+@include cond-style(not $block-thumbnails) {
+	.link {
+		min-height: $thumbnail-size;
+
+		.midcol {
+			margin: 10px 10px 10px 18px !important;
+		}
+
+		.thumbnail {
+			&.self, &.nsfw {
+				margin: 10px 0;
+			}
+		}
+
+		.rank,
+		.parent:before {
+			top: $thumbnail-size / 2;
+		}
 	}
 }
 
