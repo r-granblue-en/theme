@@ -3,7 +3,8 @@
 $version: "0.0.1";
 
 $sprite-url: "http://localhost:5000/img/sprite.png";
-$header-url: "https://hips.hearstapps.com/housebeautiful.cdnds.net/16/49/1481114715-close-up-ornaments-and-string-lights-on-christmas-tree.jpg";
+$header-url: "http://localhost:5000/img/header-image.jpg";
+$header-logo-url: "http://localhost:5000/img/header-logo-image.png";
 // $sprite-url: "%%sprite%%";
 
 // NOT nightmode coming up!
@@ -168,14 +169,17 @@ $sidebar-inner-width: $sidebar-width - 2 * $sidebar-padding;
 $small-border-radius: 2px;
 $master-border-radius: 3px;
 $sr-header-height: 22px;
-$header-base-height: 170px;
+$header-base-height: 200px;
 $header-slice-height: 50px;
+$header-logo-width: 350px;
+$header-logo-height: 93px;
+$header-logo-center-offset: 10px;
 $non-main-width: $side-gap * 2 + $sidebar-width + $sidebar-main-gap;
 
 // Text
 $scroll-overflow-msg: "hello there";
 $login: "log into reddit";
-$sub-name: "TIFU";
+$sub-name: "/r/granblue_en/";
 $subscriber-text: "subscribers";
 $online-text: "here now";
 $settings-text: "Settings";
