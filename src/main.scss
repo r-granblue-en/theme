@@ -13,9 +13,9 @@
 	> .menuarea {
 		position: relative;
 		background: $card-back;
-		margin: 0 0 4px;
+		margin: 0 0 0px;
 		padding: 3px 0 9px 15px;
-		border-radius: 0 0 0 3px;
+		border-radius: 0 0 0 3px !important;
 		z-index: 1000;
 		overflow: visible;
 		border: none;
@@ -146,7 +146,7 @@ body.comments-page {
 
 	.entry {
 		background: $card-back;
-		padding: 5px 0;
+		padding: 9px 0;
 		margin-left: 20px;
 		margin-right: 0 !important;
 		overflow: visible;

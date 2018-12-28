@@ -29,7 +29,6 @@
 
 	.tagline {
 		margin-top: 4px;
-		margin-bottom: 14px;
 	}
 
 	.midcol {
@@ -494,7 +493,8 @@ body:not(.moderator):not(.res) .comment .flat-list li:nth-child(5) {
 .tagline,
 .search-result-meta {
 	color: inherit;
-	line-height: 8px;
+	line-height: 16px;
+	height: 16px
 }
 
 /*.linkflair-S,
