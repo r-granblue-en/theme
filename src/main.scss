@@ -67,10 +67,12 @@ body.comments-page {
 }
 
 .link {
+	background: $card-back;
 	position: relative;
 	margin-bottom: 0;
 	padding-left: 0;
 	border-bottom: 1px solid $body-back !important;
+	border-radius: $master-border-radius;
 
 	.parent {
 		position: absolute;
@@ -90,6 +92,7 @@ body.comments-page {
 			top: 50%;
 			left: -13px;
 			margin-top: -12px;
+			background: $body-back;
 			@include sub-node-disc($card-back);
 		}
 	}

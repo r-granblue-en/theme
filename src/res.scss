@@ -437,13 +437,15 @@
 
 // Main content
 body.listing-page .thing.link.res-selected {
+	background: $pop-back-slightly-lighter !important;
+	border-right: 3px solid $highlight-col;
+
 	.parent:before {
 		@include sub-node-disc($pop-back-slightly-lighter);
 	}
 
 	.entry {
 		background: $pop-back-slightly-lighter !important;
-		border-right: 3px solid $highlight-col;
 	}
 }
 
