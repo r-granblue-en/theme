@@ -26,6 +26,10 @@ $thumbnail-size: 70px;
 		}
 
 		.thumbnail {
+			&.outbound:not(.nsfw) {
+				height: 70px;
+			}
+
 			&.self, &.nsfw {
 				margin: 10px 0;
 			}
