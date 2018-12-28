@@ -23,13 +23,6 @@
 }
 
 .comments-page .link {
-	.title {
-		margin-top: 4px;
-	}
-
-	.tagline {
-		margin-top: 4px;
-	}
 
 	.midcol {
 		margin-top: 7px;
@@ -42,7 +35,6 @@
 
 body.comments-page .link .entry {
 	border-radius: 0 $master-border-radius $master-border-radius 0;
-	padding: 8px 0;
 
 	.add-domain-tag,
 	.approval-checkmark ~ .domain:before {
